@@ -24,6 +24,7 @@
     "paths": {
       "@components": ["./src/components"],
       "@constants": ["./src/constants"],
+      "@contexts": ["./src/contexts"],
       "@modules": ["./node_modules"],
       "@styles": ["./src/styles"],
       "@types": ["./src/types"],

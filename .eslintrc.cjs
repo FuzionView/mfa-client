@@ -32,6 +32,8 @@ module.exports = {
   root: true,
   rules: {
     'arrow-body-style': ['error', 'as-needed'],
+    'react/prop-types': 0,
+    'react/react-in-jsx-scope': 'off',
     'simple-import-sort/exports': 'error',
     'simple-import-sort/imports': [
       'error',

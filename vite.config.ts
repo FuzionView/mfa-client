@@ -10,6 +10,7 @@ export default defineConfig({
     alias: {
       '@components': path.resolve(__dirname, './src/components'),
       '@constants': path.resolve(__dirname, './src/constants'),
+      '@contexts': path.resolve(__dirname, './src/contexts'),
       '@modules': path.resolve(__dirname, './node_modules'),
       '@styles': path.resolve(__dirname, './src/styles'),
       '@types': path.resolve(__dirname, './src/types'),
