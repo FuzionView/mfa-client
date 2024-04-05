@@ -28,6 +28,7 @@
       "@modules": ["./node_modules"],
       "@styles": ["./src/styles"],
       "@types": ["./src/types"],
+      "@pages": ["./src/pages"],
       "@utils": ["./src/utils"]
     }
   },

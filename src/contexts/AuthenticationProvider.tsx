@@ -1,22 +1,22 @@
 import { Auth0Provider } from '@auth0/auth0-react';
 
+import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from '../config';
+
 interface Props {
   children: JSX.Element;
 }
 
 export const AuthenticationProvider: React.FunctionComponent<Props> = ({ children }) => {
-  const domain = 'dev-ckd14b4izflc47iw.us.auth0.com';
-  const clientId = 'T5Yw47B3a4yn94Miq8DdoRtnwaAZrMSC';
-  const redirectUri = window.location.origin;
+  const redirectUri = `${window.location.origin}/profile`;
 
-  if (!(domain && clientId && redirectUri)) {
+  if (!(AUTH0_DOMAIN && AUTH0_CLIENT_ID && redirectUri)) {
     return null;
   }
 
   return (
     <Auth0Provider
-      domain={domain}
-      clientId={clientId}
+      domain={AUTH0_DOMAIN}
+      clientId={AUTH0_CLIENT_ID}
       authorizationParams={{
         redirect_uri: redirectUri,
       }}
