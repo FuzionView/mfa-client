@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { LoginButton } from '@components';
 import { Box } from '@radix-ui/themes';
 
 export const RequireAuth: React.FC = () => {
@@ -13,5 +14,5 @@ export const RequireAuth: React.FC = () => {
     return <Outlet />;
   }
 
-  return <Box>Go to Login</Box>;
+  return <LoginButton />;
 };
