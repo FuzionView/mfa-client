@@ -1,113 +1,65 @@
 import { Button, Flex, Text, Switch, TextField, Card } from '@radix-ui/themes';
 import { useProfileForm } from '../../hooks/useProfileForm';
-import { UserProfile } from '@types';
+import { Controller } from 'react-hook-form';
+import { UserProfile, UserType } from '@types';
 
-export const ProfileForm: React.FC = () => {
-  const form = useProfileForm();
+interface FieldProps {
+  form: ReturnType<typeof useProfileForm>;
+  label: string;
+  field: keyof UserProfile;
+}
 
-  const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    form.setField(name as keyof UserProfile, value);
-  };
+const TextFormField: React.FC<FieldProps> = ({ form, label, field }) => {
+  return (
+    <Flex direction="column" gap="1">
+      <Text>{label}</Text>
+      <TextField.Root placeholder={label} {...form.register(field)} />
+    </Flex>
+  );
+};
 
-  const handleBooleanValue = (name: keyof UserProfile, checked: boolean) => {
-    form.setField(name as keyof UserProfile, checked);
-  };
+const BooleanFormField: React.FC<FieldProps> = ({ form, label, field }) => {
+  return (
+    <Flex direction="column" gap="1">
+      <Text>{label}</Text>
+      <Controller
+        control={form.control}
+        name={field}
+        render={({ field: { onChange, onBlur, value } }) => {
+          const handleChange = (checked: boolean) =>
+            onChange({ target: { checked, name: field, type: 'checkbox' } });
+          return <Switch checked={!!value} onCheckedChange={handleChange} onBlur={onBlur} />;
+        }}
+      />
+    </Flex>
+  );
+};
+
+interface ProfileFormProps {
+  form: ReturnType<typeof useProfileForm>;
+}
+
+export const ProfileForm: React.FC<ProfileFormProps> = ({ form }) => {
+  const userType = form.watch('user_type');
 
   return (
     <Card>
       <Flex direction="column" gap="2" width={{ initial: 'auto', md: '400px' }}>
-        <Text>First Name</Text>
-        <TextField.Root
-          placeholder="First Name"
-          name="first_name"
-          value={form.first_name}
-          onChange={handleInputValue}
-        />
-        <Text>Last Name</Text>
-        <TextField.Root
-          placeholder="Last Name"
-          name="last_name"
-          value={form.last_name}
-          onChange={handleInputValue}
-        />
-        <Text>Email</Text>
-        <TextField.Root
-          placeholder="Email"
-          name="email"
-          value={form.email}
-          onChange={handleInputValue}
-          type="email"
-        />
-        <Text>Primary Phone</Text>
-        <TextField.Root
-          placeholder="Phone"
-          name="phone"
-          value={form.phone}
-          type="tel"
-          onChange={handleInputValue}
-        />
-        <Text>Secondary Phone (optional)</Text>
-        <TextField.Root
-          placeholder="Secondary Phone"
-          name="phone_2"
-          value={form.phone_2}
-          type="tel"
-          onChange={handleInputValue}
-        />
-        <Text>Mailing Address</Text>
-        <TextField.Root
-          placeholder="Address"
-          name="address"
-          value={form.address}
-          onChange={handleInputValue}
-        />
-        <Text>Address Line 2 (optional)</Text>
-        <TextField.Root
-          placeholder="Address Line 2"
-          name="address_2"
-          value={form.address_2}
-          onChange={handleInputValue}
-        />
-        <Text>City</Text>
-        <TextField.Root
-          placeholder="City"
-          name="city"
-          value={form.city}
-          onChange={handleInputValue}
-        />
-        <Text>State</Text>
-        <TextField.Root
-          placeholder="State"
-          name="state"
-          value={form.state}
-          onChange={handleInputValue}
-        />
-        <Text>Zip</Text>
-        <TextField.Root placeholder="Zip" name="zip" value={form.zip} onChange={handleInputValue} />
-        {form.user_type === 'forester' && (
-          <>
-            <Text>Business Name</Text>
-            <TextField.Root
-              placeholder="Business name"
-              name="business_name"
-              value={form.business_name}
-              onChange={handleInputValue}
-            />
-          </>
+        <TextFormField form={form} label="First Name" field="first_name" />
+        <TextFormField form={form} label="Last Name" field="last_name" />
+        <TextFormField form={form} label="Email" field="email" />
+        <TextFormField form={form} label="Phone" field="phone" />
+        <TextFormField form={form} label="Secondary Phone" field="phone_2" />
+        <TextFormField form={form} label="Mailing Address" field="address" />
+        <TextFormField form={form} label="Address Line 2" field="address_2" />
+        <TextFormField form={form} label="City" field="city" />
+        <TextFormField form={form} label="State" field="state" />
+        <TextFormField form={form} label="Zip" field="zip" />
+        {userType === UserType.Forester && (
+          <TextFormField form={form} label="Business Name" field="business_name" />
         )}
-        <Text>MFA Member?</Text>
-        <Switch
-          name="mfa_member"
-          checked={form.mfa_member}
-          onCheckedChange={(checked) => handleBooleanValue('mfa_member', checked)}
-        />
-        <Text>Join the Mailing List?</Text>
-        <Switch
-          name="mailing_list"
-          checked={form.mailing_list}
-          onCheckedChange={(checked) => handleBooleanValue('mailing_list', checked)}
-        />
+        <BooleanFormField form={form} label="MFA Member?" field="mfa_member" />
+        <BooleanFormField form={form} label="Mailing List?" field="mailing_list" />
         <Button style={{ alignSelf: 'flex-end' }}>Save</Button>
       </Flex>
     </Card>

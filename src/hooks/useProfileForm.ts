@@ -1,8 +1,7 @@
 import { UserProfile } from '@types';
-import { create } from 'zustand';
-import { combine } from 'zustand/middleware';
+import { useForm } from 'react-hook-form';
 
-const INITIAL_STATE: Partial<UserProfile> = {
+const DEFAULT_VALUES: Partial<UserProfile> = {
   address: '',
   address_2: '',
   business_name: '',
@@ -19,9 +18,8 @@ const INITIAL_STATE: Partial<UserProfile> = {
   zip: '',
 };
 
-export const useProfileForm = create(
-  combine(INITIAL_STATE, (set) => ({
-    setField: (field: keyof UserProfile, value: string | number | boolean) =>
-      set(() => ({ [field]: value })),
-  })),
-);
+export const useProfileForm = () => {
+  return useForm<UserProfile>({
+    defaultValues: DEFAULT_VALUES,
+  });
+};
