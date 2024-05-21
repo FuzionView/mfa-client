@@ -23,6 +23,10 @@ export const CreateProfile: React.FC = () => {
   const form = useProfileForm();
   const userType = form.watch('user_type');
 
+  const handleSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Container>
       <Flex direction={'column'} gap="3">
@@ -32,7 +36,7 @@ export const CreateProfile: React.FC = () => {
             We need some information about you to complete your registration!
           </Callout.Text>
         </Callout.Root>
-        <form>
+        <form onSubmit={form.handleSubmit(handleSubmit)}>
           <Flex direction="column" gap="3">
             <RadioCardFormField
               form={form}
@@ -61,7 +65,9 @@ export const CreateProfile: React.FC = () => {
                 </Flex>
               </Card>
             )}
-            <Button style={{ alignSelf: 'flex-end' }}>Save</Button>
+            <Button type="submit" style={{ alignSelf: 'flex-end' }}>
+              Save
+            </Button>
           </Flex>
         </form>
       </Flex>

@@ -1,4 +1,4 @@
-import { Flex, RadioCards, Switch, Text } from '@radix-ui/themes';
+import { Flex, RadioCards, Text } from '@radix-ui/themes';
 import { UserProfile } from '@types';
 import { useProfileForm } from '../hooks/useProfileForm';
 import { Controller } from 'react-hook-form';

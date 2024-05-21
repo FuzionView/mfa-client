@@ -9,10 +9,22 @@ interface FieldProps {
 }
 
 export const TextFormField: React.FC<FieldProps> = ({ form, label, field }) => {
+  const { errors } = form.formState;
+  const message = errors[field]?.message;
+
+  let addlProps: Record<string, string> = {};
+  if (message) {
+    addlProps.color = 'red';
+  }
   return (
     <Flex direction="column" gap="1">
       <Text>{label}</Text>
-      <TextField.Root placeholder={label} {...form.register(field)} />
+      <TextField.Root placeholder={label} {...form.register(field)} {...addlProps} />
+      {message && (
+        <Text color="red" size="1">
+          {message}
+        </Text>
+      )}
     </Flex>
   );
 };
