@@ -1,17 +1,19 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { LogoutButton, ProfileForm } from '@components';
+import { LogoutButton } from '@components';
 import { Flex, Heading, Text } from '@radix-ui/themes';
 import { useGetUserProfile } from '../hooks/users';
+import { useNavigate } from 'react-router-dom';
 
 export const Profile: React.FC = () => {
   const { user } = useAuth0();
-  const { data: profileData } = useGetUserProfile(user?.sub);
+  const { data: profileData, isError } = useGetUserProfile(user?.sub);
+  const navigate = useNavigate();
 
   // If there is no user data associated with this user ID, then make them
   // complete the profile form
-  if (profileData && 'error' in profileData) {
-    return <ProfileForm />;
+  if ((profileData && 'error' in profileData) || isError) {
+    navigate('/create-profile');
   }
 
   return (

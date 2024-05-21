@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Home, Profile, RequireAuth } from '@pages';
+import { Home, Profile, RequireAuth, CreateProfile } from '@pages';
 
 export const router = createBrowserRouter([
   {
@@ -7,7 +7,16 @@ export const router = createBrowserRouter([
     path: '/',
   },
   {
-    children: [{ element: <Profile />, path: '/profile' }],
+    children: [
+      {
+        element: <Profile />,
+        path: '/profile',
+      },
+      {
+        path: '/create-profile',
+        element: <CreateProfile />,
+      },
+    ],
     element: <RequireAuth />,
   },
 ]);
