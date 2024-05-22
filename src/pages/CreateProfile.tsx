@@ -2,8 +2,10 @@ import { Container, Flex, Heading, Callout, Card, Button } from '@radix-ui/theme
 import { useProfileForm } from '../hooks/useProfileForm';
 import { TextFormField } from '../components/TextFormField';
 import { BooleanFormField } from '../components/BooleanFormField';
-import { UserType } from '@types';
+import { UserProfile, UserType } from '@types';
 import { RadioCardFormField } from '@components';
+import { useUpdateProfile } from '../hooks/useUpdateProfile';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const userTypeOptions = [
   {
@@ -22,9 +24,15 @@ const userTypeOptions = [
 export const CreateProfile: React.FC = () => {
   const form = useProfileForm();
   const userType = form.watch('user_type');
+  const { user } = useAuth0();
 
-  const handleSubmit = (data) => {
-    console.log(data);
+  const { mutate } = useUpdateProfile({
+    onSuccess: () => {},
+    onError: () => {},
+  });
+
+  const handleSubmit = (data: UserProfile) => {
+    mutate({ userId: user.sub, profile: data });
   };
 
   return (

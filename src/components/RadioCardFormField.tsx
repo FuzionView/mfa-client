@@ -44,8 +44,8 @@ export const RadioCardFormField: React.FC<FieldProps> = ({ form, label, field, o
                 <Flex gap="2" align="center">
                   <CheckCircledIcon {...getCheckStyle(option, value)} />
                   <Flex direction="column">
-                    <Text size="4">Landowner</Text>
-                    <Text>I own one or more properties that I'd like to register with CBYC</Text>
+                    <Text size="4">{option.label}</Text>
+                    <Text>{option.description}</Text>
                   </Flex>
                 </Flex>
               </RadioCards.Item>
