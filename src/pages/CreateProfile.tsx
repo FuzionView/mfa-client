@@ -21,12 +21,25 @@ const userTypeOptions = [
   },
 ];
 
+const WelcomeCallout = () => (
+  <Callout.Root>
+    <Callout.Text>We need some information about you to complete your registration!</Callout.Text>
+  </Callout.Root>
+);
+
+const ErrorCallout = ({ error }: { error: Error }) => (
+  <Callout.Root color="red">
+    <Callout.Text>There was an error submitting your registration.</Callout.Text>
+    <Callout.Text>{error.message}</Callout.Text>
+  </Callout.Root>
+);
+
 export const CreateProfile: React.FC = () => {
   const form = useProfileForm();
   const userType = form.watch('user_type');
   const { user } = useAuth0();
 
-  const { mutate } = useCreateProfile({
+  const { mutate, isPending, isError, error } = useCreateProfile({
     onSuccess: () => {},
     onError: () => {},
   });
@@ -40,11 +53,7 @@ export const CreateProfile: React.FC = () => {
     <Container>
       <Flex direction={'column'} gap="3">
         <Heading size="9">Complete your profile</Heading>
-        <Callout.Root>
-          <Callout.Text>
-            We need some information about you to complete your registration!
-          </Callout.Text>
-        </Callout.Root>
+        <WelcomeCallout />
         <form onSubmit={form.handleSubmit(handleSubmit)}>
           <Flex direction="column" gap="3">
             <RadioCardFormField
@@ -74,7 +83,8 @@ export const CreateProfile: React.FC = () => {
                 </Flex>
               </Card>
             )}
-            <Button type="submit" style={{ alignSelf: 'flex-end' }}>
+            {isError && <ErrorCallout error={error} />}
+            <Button type="submit" style={{ alignSelf: 'flex-end' }} loading={isPending}>
               Save
             </Button>
           </Flex>

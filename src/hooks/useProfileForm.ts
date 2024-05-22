@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
 import { useAuth0 } from '@auth0/auth0-react';
+import { usePersistFormInput } from './usePersistFormInput';
+import { useMemo } from 'react';
 
 const DEFAULT_VALUES: Partial<UserProfile> = {
   address: '',
@@ -23,14 +25,26 @@ const DEFAULT_VALUES: Partial<UserProfile> = {
 
 export const useProfileForm = () => {
   const { user } = useAuth0();
+  const { getSavedInput, saveInput } = usePersistFormInput('profile-form');
 
-  const defaultValues = {
-    ...DEFAULT_VALUES,
-    email: user?.email ?? '',
-  };
+  const defaultValues = useMemo(
+    () => ({
+      ...DEFAULT_VALUES,
+      email: user?.email ?? '',
+      ...getSavedInput(),
+    }),
+    [getSavedInput],
+  );
 
-  return useForm<UserProfile>({
+  const form = useForm<UserProfile>({
     defaultValues,
     resolver: zodResolver(UserProfileSchema),
   });
+
+  // Persist
+  form.watch((data) => {
+    saveInput(data);
+  });
+
+  return form;
 };
