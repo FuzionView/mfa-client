@@ -10,6 +10,7 @@ import { router } from './router.tsx';
 
 import '@radix-ui/themes/styles.css';
 import '@styles/main.scss';
+import { ToastContainer } from './components/Toast/ToastContainer.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <AuthenticationProvider>
         <Theme accentColor="grass">
           <RouterProvider router={router} />
+          <ToastContainer />
         </Theme>
       </AuthenticationProvider>
     </QueryClientProvider>

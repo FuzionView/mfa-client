@@ -1,11 +1,12 @@
-import { Container, Flex, Heading, Callout, Card, Button } from '@radix-ui/themes';
+import { Container, Flex, Heading, Card, Button } from '@radix-ui/themes';
 import { useProfileForm } from '../hooks/useProfileForm';
 import { TextFormField } from '../components/TextFormField';
 import { BooleanFormField } from '../components/BooleanFormField';
 import { UserProfile, UserType } from '@types';
-import { RadioCardFormField } from '@components';
+import { InfoCallout, RadioCardFormField } from '@components';
 import { useCreateProfile } from '../hooks/useCreateProfile';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useStore } from '../store';
 
 const userTypeOptions = [
   {
@@ -21,27 +22,27 @@ const userTypeOptions = [
   },
 ];
 
-const WelcomeCallout = () => (
-  <Callout.Root>
-    <Callout.Text>We need some information about you to complete your registration!</Callout.Text>
-  </Callout.Root>
-);
-
-const ErrorCallout = ({ error }: { error: Error }) => (
-  <Callout.Root color="red">
-    <Callout.Text>There was an error submitting your registration.</Callout.Text>
-    <Callout.Text>{error.message}</Callout.Text>
-  </Callout.Root>
-);
-
 export const CreateProfile: React.FC = () => {
+  const { user } = useAuth0();
+  const addToast = useStore((state) => state.addToast);
   const form = useProfileForm();
   const userType = form.watch('user_type');
-  const { user } = useAuth0();
 
-  const { mutate, isPending, isError, error } = useCreateProfile({
-    onSuccess: () => {},
-    onError: () => {},
+  const { mutate, isPending } = useCreateProfile({
+    onSuccess: () => {
+      addToast({
+        title: 'Success!',
+        message: 'Successfully created your profile!',
+        intent: 'success',
+      });
+    },
+    onError: (error) => {
+      addToast({
+        title: 'Error creating your profile',
+        message: error?.message,
+        intent: 'error',
+      });
+    },
   });
 
   const handleSubmit = (data: UserProfile) => {
@@ -53,7 +54,7 @@ export const CreateProfile: React.FC = () => {
     <Container>
       <Flex direction={'column'} gap="3">
         <Heading size="9">Complete your profile</Heading>
-        <WelcomeCallout />
+        <InfoCallout description="We need some information about you to complete your registration!" />
         <form onSubmit={form.handleSubmit(handleSubmit)}>
           <Flex direction="column" gap="3">
             <RadioCardFormField
@@ -83,7 +84,6 @@ export const CreateProfile: React.FC = () => {
                 </Flex>
               </Card>
             )}
-            {isError && <ErrorCallout error={error} />}
             <Button type="submit" style={{ alignSelf: 'flex-end' }} loading={isPending}>
               Save
             </Button>
