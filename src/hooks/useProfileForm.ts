@@ -2,6 +2,7 @@ import { UserProfile } from '@types';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const DEFAULT_VALUES: Partial<UserProfile> = {
   address: '',
@@ -21,8 +22,15 @@ const DEFAULT_VALUES: Partial<UserProfile> = {
 };
 
 export const useProfileForm = () => {
+  const { user } = useAuth0();
+
+  const defaultValues = {
+    ...DEFAULT_VALUES,
+    email: user?.email ?? '',
+  };
+
   return useForm<UserProfile>({
-    defaultValues: DEFAULT_VALUES,
+    defaultValues,
     resolver: zodResolver(UserProfileSchema),
   });
 };

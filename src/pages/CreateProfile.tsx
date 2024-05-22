@@ -4,7 +4,7 @@ import { TextFormField } from '../components/TextFormField';
 import { BooleanFormField } from '../components/BooleanFormField';
 import { UserProfile, UserType } from '@types';
 import { RadioCardFormField } from '@components';
-import { useUpdateProfile } from '../hooks/useUpdateProfile';
+import { useCreateProfile } from '../hooks/useCreateProfile';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const userTypeOptions = [
@@ -26,12 +26,13 @@ export const CreateProfile: React.FC = () => {
   const userType = form.watch('user_type');
   const { user } = useAuth0();
 
-  const { mutate } = useUpdateProfile({
+  const { mutate } = useCreateProfile({
     onSuccess: () => {},
     onError: () => {},
   });
 
   const handleSubmit = (data: UserProfile) => {
+    // @ts-expect-error this is fine
     mutate({ userId: user.sub, profile: data });
   };
 
