@@ -17,7 +17,7 @@ export const ProfileDisplay: React.FC<Props> = () => {
   }
 
   return (
-    <Flex gap="1" direction="column">
+    <Flex gap="2" direction="column">
       <Box>
         {profileData?.first_name} {profileData?.last_name}
       </Box>
@@ -31,7 +31,7 @@ export const ProfileDisplay: React.FC<Props> = () => {
       <Box>{profileData?.phone_2}</Box>
       <Box>{profileData?.mfa_member}</Box>
       <Box>{profileData?.mailing_list}</Box>
-      <Flex>
+      <Flex justify="end">
         <Link to="/update-profile">
           <Button>Edit Profile</Button>
         </Link>

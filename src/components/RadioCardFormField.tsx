@@ -1,7 +1,5 @@
 import { Flex, RadioCards, Text } from '@radix-ui/themes';
-import { UserProfile } from '@types';
-import { useCreateProfileForm } from '../hooks/useCreateProfileForm';
-import { Controller } from 'react-hook-form';
+import { Controller, FieldValues, Path, useForm } from 'react-hook-form';
 import { CheckCircledIcon } from '@radix-ui/react-icons';
 
 interface Option {
@@ -10,10 +8,10 @@ interface Option {
   value: string;
 }
 
-interface FieldProps {
-  form: ReturnType<typeof useCreateProfileForm>;
+interface Props<Fields extends FieldValues> {
+  form: ReturnType<typeof useForm<Fields>>;
   label?: string;
-  field: keyof UserProfile;
+  field: Path<Fields>;
   options: Option[];
 }
 
@@ -26,7 +24,12 @@ const getCheckStyle = (option: Option, value: any) => ({
   color: 'var(--accent-9)',
 });
 
-export const RadioCardFormField: React.FC<FieldProps> = ({ form, label, field, options }) => {
+export function RadioCardFormField<Fields extends FieldValues>({
+  form,
+  label,
+  field,
+  options,
+}: Props<Fields>) {
   return (
     <Flex direction="column" gap="1">
       <Text>{label}</Text>
@@ -55,4 +58,4 @@ export const RadioCardFormField: React.FC<FieldProps> = ({ form, label, field, o
       />
     </Flex>
   );
-};
+}

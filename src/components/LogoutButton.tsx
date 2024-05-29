@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@radix-ui/themes';
 import { useStore } from '../store';
+import { ExitIcon } from '@radix-ui/react-icons';
 
 export const LogoutButton: React.FC = () => {
   const { logout } = useAuth0();
@@ -18,7 +19,8 @@ export const LogoutButton: React.FC = () => {
   };
 
   return (
-    <Button size="4" onClick={handleLogout} style={{ maxWidth: '150px' }}>
+    <Button onClick={handleLogout} style={{ maxWidth: '150px' }}>
+      <ExitIcon />
       Logout
     </Button>
   );

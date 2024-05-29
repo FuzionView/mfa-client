@@ -1,15 +1,16 @@
 import { Flex, Switch, Text } from '@radix-ui/themes';
-import { UserProfile } from '@types';
-import { useCreateProfileForm } from '../hooks/useCreateProfileForm';
-import { Controller } from 'react-hook-form';
+import { Controller, FieldValues, Path, useForm } from 'react-hook-form';
 
-interface FieldProps {
-  form: ReturnType<typeof useCreateProfileForm>;
+interface Props<Fields extends FieldValues> {
+  form: ReturnType<typeof useForm<Fields>>;
   label: string;
-  field: keyof UserProfile;
+  field: Path<Fields>;
 }
-
-export const BooleanFormField: React.FC<FieldProps> = ({ form, label, field }) => {
+export function BooleanFormField<Fields extends FieldValues>({
+  form,
+  label,
+  field,
+}: Props<Fields>) {
   return (
     <Flex direction="column" gap="1">
       <Text>{label}</Text>
@@ -24,4 +25,4 @@ export const BooleanFormField: React.FC<FieldProps> = ({ form, label, field }) =
       />
     </Flex>
   );
-};
+}

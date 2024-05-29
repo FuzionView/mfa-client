@@ -1,9 +1,9 @@
-import { Flex, Heading, Card, Button } from '@radix-ui/themes';
+import { Flex, Card, Button } from '@radix-ui/themes';
 import { UserProfile } from '@types';
 import { ProfileForm } from '@components';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useStore } from '../store';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUpdateProfile } from '../hooks/useUpdateProfile';
 import { useUpdateProfileForm } from '../hooks/useUpdateProfileForm';
 import { useGetUserProfile } from '../hooks/useGetUserProfile';
@@ -47,16 +47,22 @@ export const UpdateProfile: React.FC = () => {
 
   return (
     <Flex direction={'column'} gap="3">
-      <Heading size="9">Update your profile</Heading>
       {!isError && (
         <form onSubmit={form.handleSubmit(handleSubmit)}>
           <Flex direction="column" gap="3">
             <Card>
               <ProfileForm form={form} userType={profileData?.user_type} />
             </Card>
-            <Button type="submit" style={{ alignSelf: 'flex-end' }} loading={isPending}>
-              Save
-            </Button>
+            <Flex direction="row" style={{ alignSelf: 'flex-end' }} gap="1">
+              <Link to="/profile">
+                <Button loading={isPending} color="gray" variant="outline">
+                  Cancel
+                </Button>
+              </Link>
+              <Button type="submit" loading={isPending}>
+                Save
+              </Button>
+            </Flex>
           </Flex>
         </form>
       )}

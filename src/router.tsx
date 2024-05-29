@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Home, Profile, RequireAuth, CreateProfile, UpdateProfile } from '@pages';
 import { Layout } from './pages/Layout';
+import { CreateProperty } from './pages/CreateProperty';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
           {
             path: '/update-profile',
             element: <UpdateProfile />,
+          },
+          {
+            path: '/create-property',
+            element: <CreateProperty />,
           },
         ],
       },

@@ -1,4 +1,4 @@
-import { Flex, Heading, Card, Button } from '@radix-ui/themes';
+import { Flex, Card, Button } from '@radix-ui/themes';
 import { useCreateProfileForm } from '../hooks/useCreateProfileForm';
 import { UserProfile } from '@types';
 import { InfoCallout, ProfileForm, RadioCardFormField } from '@components';
@@ -53,7 +53,6 @@ export const CreateProfile: React.FC = () => {
 
   return (
     <Flex direction={'column'} gap="3">
-      <Heading size="9">Create your profile</Heading>
       <InfoCallout description="We need some information about you to complete your registration!" />
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <Flex direction="column" gap="3">

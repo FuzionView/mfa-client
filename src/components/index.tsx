@@ -8,3 +8,5 @@ export * from './ErrorCallout';
 export * from './InfoCallout';
 export * from './ProfileForm';
 export * from './ProfileDisplay';
+export * from './PropertyDisplay';
+export * from './PropertyForm';
