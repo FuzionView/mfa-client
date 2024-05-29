@@ -1,9 +1,9 @@
 import { Flex, Text, TextField } from '@radix-ui/themes';
 import { UserProfile } from '@types';
-import { useProfileForm } from '../hooks/useProfileForm';
+import { useCreateProfileForm } from '../hooks/useCreateProfileForm';
 
 interface FieldProps {
-  form: ReturnType<typeof useProfileForm>;
+  form: ReturnType<typeof useCreateProfileForm>;
   label: string;
   field: keyof UserProfile;
 }

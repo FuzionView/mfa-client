@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { LogoutButton } from '@components';
 import { Box, Button, Card, Flex } from '@radix-ui/themes';
 import { useGetUserProfile } from '../hooks/useGetUserProfile';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Profile: React.FC = () => {
   const { user } = useAuth0();
@@ -34,7 +34,9 @@ export const Profile: React.FC = () => {
           <Box>{profileData?.mfa_member}</Box>
           <Box>{profileData?.mailing_list}</Box>
           <Flex>
-            <Button>Edit</Button>
+            <Link to="/update-profile">
+              <Button>Edit Profile</Button>
+            </Link>
           </Flex>
         </Flex>
       </Card>

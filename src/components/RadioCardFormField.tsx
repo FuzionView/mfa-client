@@ -1,6 +1,6 @@
 import { Flex, RadioCards, Text } from '@radix-ui/themes';
 import { UserProfile } from '@types';
-import { useProfileForm } from '../hooks/useProfileForm';
+import { useCreateProfileForm } from '../hooks/useCreateProfileForm';
 import { Controller } from 'react-hook-form';
 import { CheckCircledIcon } from '@radix-ui/react-icons';
 
@@ -11,7 +11,7 @@ interface Option {
 }
 
 interface FieldProps {
-  form: ReturnType<typeof useProfileForm>;
+  form: ReturnType<typeof useCreateProfileForm>;
   label?: string;
   field: keyof UserProfile;
   options: Option[];

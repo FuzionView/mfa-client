@@ -6,3 +6,4 @@ export * from './TextFormField';
 export * from './RadioCardFormField';
 export * from './ErrorCallout';
 export * from './InfoCallout';
+export * from './ProfileForm';

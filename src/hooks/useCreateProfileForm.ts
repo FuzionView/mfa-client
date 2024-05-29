@@ -23,7 +23,7 @@ const DEFAULT_VALUES: Partial<UserProfile> = {
   zip: '',
 };
 
-export const useProfileForm = () => {
+export const useCreateProfileForm = () => {
   const { user } = useAuth0();
   const { getSavedInput, saveInput } = usePersistFormInput('profile-form');
 

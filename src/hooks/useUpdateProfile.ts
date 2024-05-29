@@ -9,7 +9,7 @@ interface UseCreateProfileArgs {
 
 type MutateArgs = { userId: string; profile: UserProfile };
 
-export const useCreateProfile = ({ onSuccess, onError }: UseCreateProfileArgs) => {
+export const useUpdateProfile = ({ onSuccess, onError }: UseCreateProfileArgs) => {
   return useMutation({
     // @ts-expect-error - this is fine
     mutationFn: (data: MutateArgs) => {
