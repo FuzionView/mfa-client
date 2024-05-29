@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { LogoutButton } from '@components';
-import { Box, Card, Flex, Heading } from '@radix-ui/themes';
-import { useGetUserProfile } from '../hooks/users';
+import { Box, Button, Card, Flex } from '@radix-ui/themes';
+import { useGetUserProfile } from '../hooks/useGetUserProfile';
 import { useNavigate } from 'react-router-dom';
 
 export const Profile: React.FC = () => {
@@ -28,6 +28,14 @@ export const Profile: React.FC = () => {
           <Box>
             {profileData?.city}, {profileData?.state} {profileData?.zip}
           </Box>
+          <Box>{profileData?.email}</Box>
+          <Box>{profileData?.phone}</Box>
+          <Box>{profileData?.phone_2}</Box>
+          <Box>{profileData?.mfa_member}</Box>
+          <Box>{profileData?.mailing_list}</Box>
+          <Flex>
+            <Button>Edit</Button>
+          </Flex>
         </Flex>
       </Card>
       <LogoutButton />

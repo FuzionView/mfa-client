@@ -6,3 +6,6 @@ export const getUserProfile = (userId: string) =>
 
 export const createUserProfile = (userId: string, data: UserProfile) =>
   axios.put(`http://localhost:3000/users/${userId}`, data);
+
+export const updateUserProfile = (userId: string, data: UserProfile) =>
+  axios.post(`http://localhost:3000/users/${userId}`, data);
