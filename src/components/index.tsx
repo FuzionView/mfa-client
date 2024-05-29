@@ -7,3 +7,4 @@ export * from './RadioCardFormField';
 export * from './ErrorCallout';
 export * from './InfoCallout';
 export * from './ProfileForm';
+export * from './ProfileDisplay';
