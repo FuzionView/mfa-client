@@ -71,11 +71,11 @@ export const PropertyDisplay: React.FC = () => {
       {!!propertyData?.length && (
         <Flex>
           {propertyData.map((property) => (
-            <PropertyInfo property={property} />
+            <PropertyInfo property={property} key={property.id} />
           ))}
         </Flex>
       )}
-      {!propertyData && <Callout.Root>Add a property to CBYC!</Callout.Root>}
+      {!propertyData?.length && <Callout.Root>Add a property to CBYC!</Callout.Root>}
       <Flex justify="end">
         <Link to="/create-property">
           <Button>Add new property</Button>

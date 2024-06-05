@@ -12,3 +12,6 @@ export const createProperty = (userId: string, data: Property) =>
 
 export const updateProperty = (userId: string, propertyId: number, data: Property) =>
   axios.post(`http://localhost:4000/properties/${userId}/${propertyId}`, data);
+
+export const deleteProperty = (userId: string, propertyId: number) =>
+  axios.delete(`http://localhost:4000/properties/${userId}/${propertyId}`);

@@ -1,4 +1,4 @@
-import { Flex, Card, Button } from '@radix-ui/themes';
+import { Flex, Card, Button, Box } from '@radix-ui/themes';
 import { Property } from '@types';
 import { PropertyForm } from '@components';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -9,6 +9,7 @@ import { useUpdatePropertyForm } from '../hooks/useUpdatePropertyForm';
 import { useGetProperty } from '../hooks/useGetProperty';
 import { useUpdateProperty } from '../hooks/useUpdateProperty';
 import { SubmitErrorHandler } from 'react-hook-form';
+import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog';
 
 export const UpdateProperty: React.FC = () => {
   const { user } = useAuth0();
@@ -59,7 +60,9 @@ export const UpdateProperty: React.FC = () => {
             <Card>
               <PropertyForm form={form} />
             </Card>
-            <Flex direction="row" style={{ alignSelf: 'flex-end' }} gap="1">
+            <Flex direction="row" gap="1">
+              <DeletePropertyDialog userId={user?.sub} propertyId={Number(propertyId)} />
+              <Box style={{ flex: 1 }} />
               <Link to="/profile">
                 <Button loading={isPending} color="gray" variant="outline">
                   Cancel
