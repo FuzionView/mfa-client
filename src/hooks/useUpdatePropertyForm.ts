@@ -1,9 +1,12 @@
 import { Property } from '@types';
-import { useForm } from 'react-hook-form';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo } from 'react';
 import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
+import { useStore } from '../store';
+import { useUpdateProperty } from './useUpdateProperty';
 
 const DEFAULT_VALUES: Partial<Property> = {
   address_type: undefined,
@@ -24,8 +27,10 @@ const DEFAULT_VALUES: Partial<Property> = {
   plan_date: undefined,
 };
 
-export const useUpdatePropertyForm = () => {
+export const useUpdatePropertyForm = (propertyId: number) => {
   const { user } = useAuth0();
+  const navigate = useNavigate();
+  const addToast = useStore((state) => state.addToast);
 
   const defaultValues = useMemo(
     () => ({
@@ -40,5 +45,34 @@ export const useUpdatePropertyForm = () => {
     resolver: zodResolver(PropertySchema),
   });
 
-  return form;
+  const { mutate, isPending: isSubmitPending } = useUpdateProperty({
+    onSuccess: () => {
+      addToast({
+        title: 'Success!',
+        message: 'Successfully updated property!',
+        intent: 'success',
+      });
+      navigate('/profile');
+    },
+    onError: (error) => {
+      addToast({
+        title: 'Error updating property',
+        message: error?.message,
+        intent: 'error',
+      });
+    },
+  });
+
+  const handleSubmit: SubmitHandler<Property> = (data) => {
+    // @ts-expect-error this is fine
+    mutate({ userId: user.sub, propertyId, property: data });
+  };
+
+  const handleError: SubmitErrorHandler<Property> = (error) => {
+    console.error('Form error', error);
+  };
+
+  const onSubmit = form.handleSubmit(handleSubmit, handleError);
+
+  return { form, onSubmit, isSubmitPending };
 };

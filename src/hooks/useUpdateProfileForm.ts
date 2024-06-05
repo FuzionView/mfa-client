@@ -1,7 +1,11 @@
 import { UserProfile } from '@types';
-import { useForm } from 'react-hook-form';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
+import { useUpdateProfile } from './useUpdateProfile';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useStore } from '../store';
+import { useNavigate } from 'react-router-dom';
 
 const DEFAULT_VALUES: Partial<UserProfile> = {
   address: '',
@@ -21,10 +25,41 @@ const DEFAULT_VALUES: Partial<UserProfile> = {
 };
 
 export const useUpdateProfileForm = (profile: Partial<UserProfile> = DEFAULT_VALUES) => {
+  const { user } = useAuth0();
+  const navigate = useNavigate();
+  const addToast = useStore((state) => state.addToast);
+
   const form = useForm<UserProfile>({
     defaultValues: profile,
     resolver: zodResolver(UserProfileSchema),
   });
 
-  return form;
+  const { mutate, isPending: isSubmitPending } = useUpdateProfile({
+    onSuccess: () => {
+      addToast({
+        title: 'Success!',
+        message: 'Successfully updated your profile!',
+        intent: 'success',
+      });
+      navigate('/profile');
+    },
+    onError: (error) => {
+      addToast({
+        title: 'Error updating your profile',
+        message: error?.message,
+        intent: 'error',
+      });
+    },
+  });
+
+  const handleSubmit: SubmitHandler<UserProfile> = (data) => {
+    // @ts-expect-error this is fine
+    mutate({ userId: user.sub, profile: data });
+  };
+
+  const handleError: SubmitErrorHandler<UserProfile> = () => {};
+
+  const onSubmit = form.handleSubmit(handleSubmit, handleError);
+
+  return { form, onSubmit, isSubmitPending };
 };

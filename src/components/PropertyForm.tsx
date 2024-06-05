@@ -1,9 +1,9 @@
 import { Flex } from '@radix-ui/themes';
 import { TextFormField } from './FormFields/TextFormField';
 import { BooleanFormField } from './FormFields/BooleanFormField';
-import { useCreatePropertyForm } from '../hooks/useCreatePropertyForm';
 import { InputType, Property, PropertyAddressType } from '@types';
 import { RadioCardFormField } from './FormFields/RadioCardFormField';
+import { UseFormReturn } from 'react-hook-form';
 
 const addressTypeOptions = [
   {
@@ -19,13 +19,12 @@ const addressTypeOptions = [
 ];
 
 interface Props {
-  form: ReturnType<typeof useCreatePropertyForm>;
+  form: UseFormReturn<Property>;
 }
 
 export const PropertyForm: React.FC<Props> = ({ form }) => {
   // TODO: make sure that when this changes, clear previous address information
   // TODO: add warning alert at the bottom for all errors
-  // TODO: on submit, clear localstorage form info
   const addressType = form.watch('address_type');
 
   return (

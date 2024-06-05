@@ -2,11 +2,11 @@ import { Flex } from '@radix-ui/themes';
 import { TextFormField } from './FormFields/TextFormField';
 import { BooleanFormField } from './FormFields/BooleanFormField';
 import { UserProfile, UserType } from '@types';
-import { useCreateProfileForm } from '../hooks/useCreateProfileForm';
+import { UseFormReturn } from 'react-hook-form';
 
 interface Props {
   userType?: UserType;
-  form: ReturnType<typeof useCreateProfileForm>;
+  form: UseFormReturn<UserProfile>;
 }
 
 export const ProfileForm: React.FC<Props> = ({ userType, form }) => {

@@ -1,20 +1,15 @@
 import { Flex, Card, Button } from '@radix-ui/themes';
-import { UserProfile } from '@types';
 import { ProfileForm } from '@components';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useStore } from '../store';
-import { Link, useNavigate } from 'react-router-dom';
-import { useUpdateProfile } from '../hooks/useUpdateProfile';
+import { Link } from 'react-router-dom';
 import { useUpdateProfileForm } from '../hooks/useUpdateProfileForm';
 import { useGetUserProfile } from '../hooks/useGetUserProfile';
 import { useEffect } from 'react';
 
 export const UpdateProfile: React.FC = () => {
   const { user } = useAuth0();
-  const navigate = useNavigate();
-  const addToast = useStore((state) => state.addToast);
-  const { data: profileData, isError } = useGetUserProfile(user?.sub);
-  const form = useUpdateProfileForm(profileData);
+  const { data: profileData, isError, isPending: isProfilePending } = useGetUserProfile(user?.sub);
+  const { form, onSubmit, isSubmitPending } = useUpdateProfileForm(profileData);
 
   useEffect(() => {
     if (profileData) {
@@ -22,44 +17,21 @@ export const UpdateProfile: React.FC = () => {
     }
   }, [profileData]);
 
-  const { mutate, isPending } = useUpdateProfile({
-    onSuccess: () => {
-      addToast({
-        title: 'Success!',
-        message: 'Successfully updated your profile!',
-        intent: 'success',
-      });
-      navigate('/profile');
-    },
-    onError: (error) => {
-      addToast({
-        title: 'Error updating your profile',
-        message: error?.message,
-        intent: 'error',
-      });
-    },
-  });
-
-  const handleSubmit = (data: UserProfile) => {
-    // @ts-expect-error this is fine
-    mutate({ userId: user.sub, profile: data });
-  };
-
   return (
     <Flex direction={'column'} gap="3">
-      {!isError && (
-        <form onSubmit={form.handleSubmit(handleSubmit)}>
+      {!isError && !isProfilePending && (
+        <form onSubmit={onSubmit}>
           <Flex direction="column" gap="3">
             <Card>
               <ProfileForm form={form} userType={profileData?.user_type} />
             </Card>
             <Flex direction="row" style={{ alignSelf: 'flex-end' }} gap="1">
               <Link to="/profile">
-                <Button loading={isPending} color="gray" variant="outline">
+                <Button loading={isSubmitPending} color="gray" variant="outline">
                   Cancel
                 </Button>
               </Link>
-              <Button type="submit" loading={isPending}>
+              <Button type="submit" loading={isSubmitPending}>
                 Save
               </Button>
             </Flex>
