@@ -5,8 +5,8 @@ import { useMemo } from 'react';
 import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import { useStore } from '../store';
-import { useUpdateProperty } from './useUpdateProperty';
+import { useStore } from '../../store';
+import { useUpdateProperty } from '../queries/useUpdateProperty';
 
 const DEFAULT_VALUES: Partial<Property> = {
   address_type: undefined,
@@ -70,6 +70,12 @@ export const useUpdatePropertyForm = (propertyId: number) => {
 
   const handleError: SubmitErrorHandler<Property> = (error) => {
     console.error('Form error', error);
+
+    addToast({
+      title: 'Form error',
+      message: JSON.stringify(Object.keys(error)),
+      intent: 'error',
+    });
   };
 
   const onSubmit = form.handleSubmit(handleSubmit, handleError);

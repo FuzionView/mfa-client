@@ -1,19 +1,19 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
-import { UserProfile } from '@types';
-import { createUserProfile } from '../api/users';
+import { Property } from '@types';
+import { createProperty } from '../../api/properties';
 
 interface UseUpdateProfileArgs {
   onSuccess?: MutationOptions['onSuccess'];
   onError?: MutationOptions['onError'];
 }
 
-type MutateArgs = { userId: string; profile: UserProfile };
+type MutateArgs = { userId: string; property: Property };
 
-export const useCreateProfile = ({ onSuccess, onError }: UseUpdateProfileArgs) => {
+export const useCreateProperty = ({ onSuccess, onError }: UseUpdateProfileArgs) => {
   return useMutation({
     // @ts-expect-error - this is fine
     mutationFn: (data: MutateArgs) => {
-      return createUserProfile(data.userId, data.profile);
+      return createProperty(data.userId, data.property);
     },
     onSuccess,
     onError,

@@ -1,5 +1,5 @@
 import { Flex, Button, Card } from '@radix-ui/themes';
-import { useCreatePropertyForm } from '../hooks/useCreatePropertyForm';
+import { useCreatePropertyForm } from '../hooks/forms/useCreatePropertyForm';
 import { PropertyForm } from '@components';
 
 export const CreateProperty: React.FC = () => {

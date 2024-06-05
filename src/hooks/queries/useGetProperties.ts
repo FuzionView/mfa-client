@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProperties } from '../api/properties';
+import { getProperties } from '../../api/properties';
 import { PropertyWithId } from '@types';
 
 export const useGetProperties = (userId?: string) => {

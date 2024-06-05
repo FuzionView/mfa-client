@@ -1,13 +1,13 @@
 import { Property } from '@types';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { usePersistFormInput } from './usePersistFormInput';
+import { usePersistFormInput } from '../usePersistFormInput';
 import { useMemo } from 'react';
 import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useStore } from '../store';
+import { useStore } from '../../store';
 import { useNavigate } from 'react-router-dom';
-import { useCreateProperty } from './useCreateProperty';
+import { useCreateProperty } from '../queries/useCreateProperty';
 
 const DEFAULT_VALUES: Partial<Property> = {
   address_type: undefined,
@@ -76,6 +76,11 @@ export const useCreatePropertyForm = () => {
 
   const handleError: SubmitErrorHandler<Property> = (error) => {
     console.error(error, form.getValues());
+    addToast({
+      title: 'Form error',
+      message: JSON.stringify(Object.keys(error)),
+      intent: 'error',
+    });
   };
 
   const onSubmit = form.handleSubmit(handleSubmit, handleError);

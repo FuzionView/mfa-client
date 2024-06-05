@@ -1,5 +1,5 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
-import { deleteProperty } from '../api/properties';
+import { deleteProperty } from '../../api/properties';
 
 interface UseDeletePropertyArgs {
   onSuccess?: MutationOptions['onSuccess'];

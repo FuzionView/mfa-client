@@ -1,5 +1,5 @@
 import { Box, Card, Button, Callout, Flex, Heading } from '@radix-ui/themes';
-import { useGetProperties } from '../hooks/useGetProperties';
+import { useGetProperties } from '../hooks/queries/useGetProperties';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { PropertyWithId, PropertyAddressType } from '@types';
@@ -69,7 +69,7 @@ export const PropertyDisplay: React.FC = () => {
     <Flex direction="column" gap="2">
       <Heading size="7">Properties</Heading>
       {!!propertyData?.length && (
-        <Flex>
+        <Flex gap="1">
           {propertyData.map((property) => (
             <PropertyInfo property={property} key={property.id} />
           ))}

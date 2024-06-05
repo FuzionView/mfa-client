@@ -24,7 +24,6 @@ interface Props {
 
 export const PropertyForm: React.FC<Props> = ({ form }) => {
   // TODO: make sure that when this changes, clear previous address information
-  // TODO: add warning alert at the bottom for all errors
   const addressType = form.watch('address_type');
 
   return (

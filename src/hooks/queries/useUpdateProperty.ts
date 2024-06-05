@@ -1,6 +1,6 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
 import { Property } from '@types';
-import { updateProperty } from '../api/properties';
+import { updateProperty } from '../../api/properties';
 
 interface UseUpdatePropertyArgs {
   onSuccess?: MutationOptions['onSuccess'];

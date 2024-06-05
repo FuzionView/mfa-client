@@ -1,6 +1,6 @@
 import { Button } from '@radix-ui/themes';
 import { AlertDialog } from '../AlertDialog';
-import { useDeleteProperty } from '../../hooks/useDeleteProperty';
+import { useDeleteProperty } from '../../hooks/queries/useDeleteProperty';
 import { useStore } from '../../store';
 import { useNavigate } from 'react-router-dom';
 

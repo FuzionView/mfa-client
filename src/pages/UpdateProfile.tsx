@@ -2,8 +2,8 @@ import { Flex, Card, Button } from '@radix-ui/themes';
 import { ProfileForm } from '@components';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-import { useUpdateProfileForm } from '../hooks/useUpdateProfileForm';
-import { useGetUserProfile } from '../hooks/useGetUserProfile';
+import { useUpdateProfileForm } from '../hooks/forms/useUpdateProfileForm';
+import { useGetUserProfile } from '../hooks/queries/useGetUserProfile';
 import { useEffect } from 'react';
 
 export const UpdateProfile: React.FC = () => {

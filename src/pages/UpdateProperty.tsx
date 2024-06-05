@@ -3,8 +3,8 @@ import { PropertyForm } from '@components';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useUpdatePropertyForm } from '../hooks/useUpdatePropertyForm';
-import { useGetProperty } from '../hooks/useGetProperty';
+import { useUpdatePropertyForm } from '../hooks/forms/useUpdatePropertyForm';
+import { useGetProperty } from '../hooks/queries/useGetProperty';
 import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog';
 
 export const UpdateProperty: React.FC = () => {

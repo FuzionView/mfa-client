@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { ProfileDisplay, PropertyDisplay } from '@components';
 import { Card, Flex } from '@radix-ui/themes';
-import { useGetUserProfile } from '../hooks/useGetUserProfile';
+import { useGetUserProfile } from '../hooks/queries/useGetUserProfile';
 import { useNavigate } from 'react-router-dom';
 
 export const Profile: React.FC = () => {

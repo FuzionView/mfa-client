@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Box, Button, Callout, Flex } from '@radix-ui/themes';
 import { UserProfile } from '@types';
 import { Link } from 'react-router-dom';
-import { useGetUserProfile } from '../hooks/useGetUserProfile';
+import { useGetUserProfile } from '../hooks/queries/useGetUserProfile';
 
 interface Props {
   profileData?: UserProfile;
