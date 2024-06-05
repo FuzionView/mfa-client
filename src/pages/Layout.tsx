@@ -1,5 +1,5 @@
 import { Box, Container, Flex, Heading } from '@radix-ui/themes';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, matchPath, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { LogoutButton } from '@components';
 
@@ -9,11 +9,13 @@ const titles: Record<string, string> = {
   '/create-profile': 'Create your Profile',
   '/update-profile': 'Update your Profile',
   '/create-property': 'Add a New Property',
+  '/update-property/:id': 'Update Property',
 };
 
 export const Layout = () => {
   const { pathname } = useLocation();
-  const title = titles[pathname] ?? '';
+  const titleMatch = Object.entries(titles).find(([path]) => matchPath(path, pathname));
+  const title = titleMatch ? titleMatch[1] : '';
 
   return (
     <Container>

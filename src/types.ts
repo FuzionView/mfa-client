@@ -6,3 +6,9 @@ export interface Toast {
   message?: string;
   intent?: string;
 }
+
+export enum InputType {
+  Text = 'text',
+  Number = 'number',
+  Date = 'date',
+}

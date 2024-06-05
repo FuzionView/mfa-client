@@ -2,10 +2,10 @@ import { UserProfile } from '@types';
 import axios from 'axios';
 
 export const getUserProfile = (userId: string) =>
-  axios.get(`http://localhost:3000/users/${userId}`);
+  axios.get(`http://localhost:4000/users/${userId}`);
 
 export const createUserProfile = (userId: string, data: UserProfile) =>
-  axios.put(`http://localhost:3000/users/${userId}`, data);
+  axios.put(`http://localhost:4000/users/${userId}`, data);
 
 export const updateUserProfile = (userId: string, data: UserProfile) =>
-  axios.post(`http://localhost:3000/users/${userId}`, data);
+  axios.post(`http://localhost:4000/users/${userId}`, data);

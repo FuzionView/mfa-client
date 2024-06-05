@@ -1,5 +1,6 @@
-import { Flex, Switch, Text } from '@radix-ui/themes';
+import { Flex, Switch } from '@radix-ui/themes';
 import { Controller, FieldValues, Path, useForm } from 'react-hook-form';
+import { FormLabel } from './FormLabel';
 
 interface Props<Fields extends FieldValues> {
   form: ReturnType<typeof useForm<Fields>>;
@@ -13,7 +14,7 @@ export function BooleanFormField<Fields extends FieldValues>({
 }: Props<Fields>) {
   return (
     <Flex direction="column" gap="1">
-      <Text>{label}</Text>
+      <FormLabel>{label}</FormLabel>
       <Controller
         control={form.control}
         name={field}

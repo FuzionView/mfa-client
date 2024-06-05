@@ -1,6 +1,7 @@
 import { Flex, RadioCards, Text } from '@radix-ui/themes';
 import { Controller, FieldValues, Path, useForm } from 'react-hook-form';
 import { CheckCircledIcon } from '@radix-ui/react-icons';
+import { FormLabel } from './FormLabel';
 
 interface Option {
   label: string;
@@ -32,7 +33,7 @@ export function RadioCardFormField<Fields extends FieldValues>({
 }: Props<Fields>) {
   return (
     <Flex direction="column" gap="1">
-      <Text>{label}</Text>
+      <FormLabel>{label}</FormLabel>
       <Controller
         control={form.control}
         name={field}

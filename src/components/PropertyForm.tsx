@@ -1,38 +1,88 @@
 import { Flex } from '@radix-ui/themes';
-import { TextFormField } from './TextFormField';
-import { BooleanFormField } from './BooleanFormField';
+import { TextFormField } from './FormFields/TextFormField';
+import { BooleanFormField } from './FormFields/BooleanFormField';
 import { useCreatePropertyForm } from '../hooks/useCreatePropertyForm';
-import { Property } from '@types';
+import { InputType, Property, PropertyAddressType } from '@types';
+import { RadioCardFormField } from './FormFields/RadioCardFormField';
+
+const addressTypeOptions = [
+  {
+    label: 'Street Address',
+    value: 'street',
+    description: 'My property has a street address',
+  },
+  {
+    label: 'Township, Range, Section (PLSS)',
+    value: 'plss',
+    description: 'My property location is described using township, range, and section ',
+  },
+];
 
 interface Props {
   form: ReturnType<typeof useCreatePropertyForm>;
 }
 
 export const PropertyForm: React.FC<Props> = ({ form }) => {
+  // TODO: make sure that when this changes, clear previous address information
+  // TODO: add warning alert at the bottom for all errors
+  // TODO: on submit, clear localstorage form info
+  const addressType = form.watch('address_type');
+
   return (
-    <Flex direction="column" gap="2" width={{ initial: 'auto', md: '400px' }}>
-      <TextFormField<Property> form={form} label="Address" field="address_1" />
-      <TextFormField<Property> form={form} label="Address Line 2" field="address_2" />
-      <TextFormField<Property> form={form} label="City" field="city" />
-      <TextFormField<Property> form={form} label="State" field="state" />
-      <TextFormField<Property> form={form} label="Zip" field="zip" />
-      <TextFormField<Property> form={form} label="Section" field="section" />
-      <TextFormField<Property> form={form} label="Township" field="township" />
-      <TextFormField<Property> form={form} label="Range" field="range" />
-      <TextFormField<Property> form={form} label="County" field="county" />
-      <TextFormField<Property> form={form} label="Parcel ID" field="parcel_id" />
-      <TextFormField<Property>
+    <Flex direction="column" gap="2">
+      <RadioCardFormField
         form={form}
-        label="Estimated Total Acres"
-        field="estimated_total_acres"
+        label="Property address type"
+        field="address_type"
+        options={addressTypeOptions}
       />
-      <TextFormField<Property> form={form} label="Comments" field="comments" />
-      <BooleanFormField<Property>
-        form={form}
-        label="Current stewardship plan?"
-        field="current_stewardship_plan"
-      />
-      <TextFormField<Property> form={form} label="Plan Date" field="plan_date" />
+      {addressType && (
+        <Flex direction="column" gap="2">
+          {addressType === PropertyAddressType.Street && (
+            <>
+              <TextFormField<Property> form={form} label="Address" field="address" />
+              <TextFormField<Property>
+                form={form}
+                label="Address Line 2"
+                field="address_2"
+                isOptional
+              />
+              <TextFormField<Property> form={form} label="City" field="city" />
+              <TextFormField<Property> form={form} label="State" field="state" />
+              <TextFormField<Property> form={form} label="Zip" field="zip" />
+            </>
+          )}
+          {addressType === PropertyAddressType.PLSS && (
+            <>
+              <TextFormField<Property> form={form} label="Township" field="township" />
+              <TextFormField<Property> form={form} label="Range" field="range" />
+              <TextFormField<Property> form={form} label="Section" field="section" />
+              <TextFormField<Property> form={form} label="County" field="county" />
+              <TextFormField<Property> form={form} label="State" field="state" />
+            </>
+          )}
+          <TextFormField<Property> form={form} label="Parcel ID" field="parcel_id" isOptional />
+          <TextFormField<Property>
+            form={form}
+            label="Estimated Total Acres"
+            field="estimated_total_acres"
+            inputType={InputType.Number}
+          />
+          <TextFormField<Property> form={form} label="Comments" field="comments" isOptional />
+          <BooleanFormField<Property>
+            form={form}
+            label="Current stewardship plan?"
+            field="current_stewardship_plan"
+          />
+          <TextFormField<Property>
+            form={form}
+            label="Plan Date"
+            field="plan_date"
+            inputType={InputType.Date}
+            isOptional
+          />
+        </Flex>
+      )}
     </Flex>
   );
 };

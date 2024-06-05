@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCreateProperty } from '../hooks/useCreateProperty';
 import { useCreatePropertyForm } from '../hooks/useCreatePropertyForm';
 import { PropertyForm } from '@components';
+import { SubmitErrorHandler } from 'react-hook-form';
 
 export const CreateProperty: React.FC = () => {
   const { user } = useAuth0();
@@ -36,9 +37,13 @@ export const CreateProperty: React.FC = () => {
     mutate({ userId: user.sub, property });
   };
 
+  const handleError: SubmitErrorHandler<Property> = (error) => {
+    console.error('Form error', error);
+  };
+
   return (
     <Flex direction={'column'} gap="3">
-      <form onSubmit={form.handleSubmit(handleSubmit)}>
+      <form onSubmit={form.handleSubmit(handleSubmit, handleError)}>
         <Flex direction="column" gap="3">
           <Card>
             <PropertyForm form={form} />

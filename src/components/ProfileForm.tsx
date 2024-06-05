@@ -1,6 +1,6 @@
 import { Flex } from '@radix-ui/themes';
-import { TextFormField } from './TextFormField';
-import { BooleanFormField } from './BooleanFormField';
+import { TextFormField } from './FormFields/TextFormField';
+import { BooleanFormField } from './FormFields/BooleanFormField';
 import { UserProfile, UserType } from '@types';
 import { useCreateProfileForm } from '../hooks/useCreateProfileForm';
 

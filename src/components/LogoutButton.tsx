@@ -4,7 +4,7 @@ import { useStore } from '../store';
 import { ExitIcon } from '@radix-ui/react-icons';
 
 export const LogoutButton: React.FC = () => {
-  const { logout } = useAuth0();
+  const { logout, isAuthenticated } = useAuth0();
   const addToast = useStore((state) => state.addToast);
 
   const handleLogout = () => {
@@ -17,6 +17,8 @@ export const LogoutButton: React.FC = () => {
       intent: 'success',
     });
   };
+
+  if (!isAuthenticated) return null;
 
   return (
     <Button onClick={handleLogout} style={{ maxWidth: '150px' }}>
