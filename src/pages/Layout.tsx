@@ -10,6 +10,7 @@ const titles: Record<string, string> = {
   '/update-profile': 'Update your Profile',
   '/create-property': 'Add a New Property',
   '/update-property/:id': 'Update Property',
+  '/request-assessment/:id': 'Request Property Assessment',
 };
 
 export const Layout = () => {

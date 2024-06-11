@@ -9,7 +9,7 @@ import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog
 
 export const UpdateProperty: React.FC = () => {
   const { user } = useAuth0();
-  let { propertyId } = useParams();
+  const { propertyId } = useParams();
   const {
     data: propertyData,
     isError,

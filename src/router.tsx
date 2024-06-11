@@ -3,6 +3,7 @@ import { Home, Profile, RequireAuth, CreateProfile, UpdateProfile } from '@pages
 import { Layout } from './pages/Layout';
 import { CreateProperty } from './pages/CreateProperty';
 import { UpdateProperty } from './pages/UpdateProperty';
+import { CreateAssessmentRequest } from './pages/CreateAssessmentRequest';
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
           {
             path: '/update-property/:propertyId',
             element: <UpdateProperty />,
+          },
+          {
+            path: '/request-assessment/:propertyId',
+            element: <CreateAssessmentRequest />,
           },
         ],
       },

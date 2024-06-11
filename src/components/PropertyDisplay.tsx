@@ -1,57 +1,28 @@
-import { Box, Card, Button, Callout, Flex, Heading } from '@radix-ui/themes';
+import { Card, Button, Callout, Flex, Heading, Box } from '@radix-ui/themes';
 import { useGetProperties } from '../hooks/queries/useGetProperties';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-import { PropertyWithId, PropertyAddressType } from '@types';
+import { PropertyWithId } from '@types';
+import { AddressDisplay } from '@components';
 
 interface PropertyInfoProps {
   property: PropertyWithId;
 }
 
-const Address = ({ property }: { property: PropertyWithId }) => {
-  if (property.address_type === PropertyAddressType.Street) {
-    return (
-      <Flex direction="column" gap="1">
-        <Box>
-          <strong>{property.address}</strong>
-        </Box>
-        <Box>{`${property.city}, ${property.state} ${property.zip}`}</Box>
-      </Flex>
-    );
-  } else {
-    return (
-      <Flex direction="column" gap="1">
-        <Box>
-          <strong>Township </strong> {property.township}
-        </Box>
-        <Box>
-          <strong>Range </strong> {property.range}
-        </Box>
-        <Box>
-          <strong>Section </strong> {property.section}
-        </Box>
-        <Box>
-          <strong>County </strong> {property.county}
-        </Box>
-        <Box>
-          <strong>State </strong> {property.state}
-        </Box>
-      </Flex>
-    );
-  }
-};
-
 const PropertyInfo = ({ property }: PropertyInfoProps) => {
-  const link = `/update-property/${property.id}`;
   return (
-    <Card>
-      <Flex direction="column" gap="2">
-        <Address property={property} />
-        <Flex gap="1" justify="end">
-          <Link to={link}>
-            <Button>Edit</Button>
-          </Link>
-        </Flex>
+    <Card
+      style={{ display: 'flex', flexDirection: 'column', minWidth: '300px', gap: 'var(--space-2)' }}
+    >
+      <AddressDisplay data={property} />
+      <Box style={{ flex: 1 }} />
+      <Flex gap="1" justify="end">
+        <Link to={`/request-assessment/${property.id}`}>
+          <Button color="gray">Request assessment</Button>
+        </Link>
+        <Link to={`/update-property/${property.id}`}>
+          <Button>Edit</Button>
+        </Link>
       </Flex>
     </Card>
   );
