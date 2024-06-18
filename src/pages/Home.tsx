@@ -6,7 +6,7 @@ import { Card, Flex, Heading, Text } from '@radix-ui/themes';
 import { ProfileButton } from '../components/ProfileButton';
 
 export const Home: React.FC = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <Card>
@@ -19,7 +19,9 @@ export const Home: React.FC = () => {
           Association provides up to a half-day walkthrough of your woods by a professional forester
           at no cost to you.
         </Text>
-        <Flex justify="center">{isAuthenticated ? <ProfileButton /> : <LoginButton />}</Flex>
+        <Flex justify="center">
+          {isAuthenticated ? <ProfileButton /> : <LoginButton isLoading={isLoading} />}
+        </Flex>
       </Flex>
     </Card>
   );
