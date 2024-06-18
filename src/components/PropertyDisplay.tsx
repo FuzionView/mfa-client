@@ -1,4 +1,4 @@
-import { Card, Button, Callout, Flex, Heading, Box, Badge } from '@radix-ui/themes';
+import { Card, Button, Callout, Flex, Heading, Box } from '@radix-ui/themes';
 import { useGetProperties } from '../hooks/queries/useGetProperties';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
@@ -79,8 +79,6 @@ const PropertyInfo = ({ property }: PropertyInfoProps) => {
 export const PropertyDisplay: React.FC = () => {
   const { user } = useAuth0();
   const { data: propertyData, isError } = useGetProperties(user?.sub);
-
-  console.log(propertyData);
 
   if (isError) {
     return <Callout.Root color="red">Error retrieving property information</Callout.Root>;
