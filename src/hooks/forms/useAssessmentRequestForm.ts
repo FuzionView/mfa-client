@@ -16,7 +16,7 @@ const DEFAULT_VALUES: Partial<AssessmentRequest> = {
 
 export const useAssessmentRequestForm = (propertyId: number) => {
   const navigate = useNavigate();
-  const { getSavedInput, saveInput } = usePersistFormInput('request-assessment-form');
+  const { getSavedInput, saveInput } = usePersistFormInput(`request-assessment-form-${propertyId}`);
   const addToast = useStore((state) => state.addToast);
 
   const { mutate, isPending: isSubmitPending } = useCreateAssessmentRequest({
@@ -40,7 +40,7 @@ export const useAssessmentRequestForm = (propertyId: number) => {
   const defaultValues = useMemo(
     () => ({
       ...DEFAULT_VALUES,
-      propertyId,
+      property_id: propertyId,
       ...getSavedInput(),
     }),
     [getSavedInput],
