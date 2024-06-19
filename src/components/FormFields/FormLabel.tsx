@@ -5,8 +5,7 @@ interface Props {
   isOptional?: boolean;
 }
 
-export const FormLabel: React.FC<Props> = ({ children, isOptional = false }) => {
-  return (
+export const FormLabel: React.FC<Props> = ({ children, isOptional = false }) => (
     <Flex gap="1" align="baseline">
       <Text color="gray">
         <strong>{children}</strong>
@@ -16,4 +15,3 @@ export const FormLabel: React.FC<Props> = ({ children, isOptional = false }) => 
       </Text>
     </Flex>
   );
-};

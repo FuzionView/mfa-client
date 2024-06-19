@@ -13,39 +13,39 @@ import {
 
 export const router = createBrowserRouter([
   {
-    element: <Layout />,
-    path: '/',
     children: [
-      { index: true, element: <Home /> },
+      { element: <Home />, index: true },
       {
-        element: <RequireAuth />,
         children: [
           {
-            path: '/profile',
             element: <Profile />,
+            path: '/profile',
           },
           {
-            path: '/create-profile',
             element: <CreateProfile />,
+            path: '/create-profile',
           },
           {
-            path: '/update-profile',
             element: <UpdateProfile />,
+            path: '/update-profile',
           },
           {
-            path: '/create-property',
             element: <CreateProperty />,
+            path: '/create-property',
           },
           {
-            path: '/update-property/:propertyId',
             element: <UpdateProperty />,
+            path: '/update-property/:propertyId',
           },
           {
-            path: '/request-assessment/:propertyId',
             element: <CreateAssessmentRequest />,
+            path: '/request-assessment/:propertyId',
           },
         ],
+        element: <RequireAuth />,
       },
     ],
+    element: <Layout />,
+    path: '/',
   },
 ]);

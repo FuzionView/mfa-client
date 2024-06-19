@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { LoginButton } from '@components';
 import { Callout } from '@radix-ui/themes';
+
 import { LoadingCallout } from '../components/LoadingCallout';
 
 export const RequireAuth: React.FC = () => {

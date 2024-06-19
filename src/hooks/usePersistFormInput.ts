@@ -8,12 +8,10 @@ export const usePersistFormInput = (key: string) => {
   );
   const getSavedInput = useCallback(() => JSON.parse(localStorage.getItem(key) ?? '{}'), [key]);
 
-  const ret = useMemo(() => {
-    return {
-      saveInput,
+  const ret = useMemo(() => ({
       getSavedInput,
-    };
-  }, [getSavedInput, saveInput]);
+      saveInput,
+    }), [getSavedInput, saveInput]);
 
   return ret;
 };

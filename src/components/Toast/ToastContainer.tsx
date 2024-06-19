@@ -1,8 +1,10 @@
 import * as T from '@radix-ui/react-toast';
 
-import './Toast.scss';
 import { useStore } from '../../store';
+
 import { ToastComponent } from './ToastComponent';
+
+import './Toast.scss';
 
 export const ToastContainer = () => {
   const messages = useStore((state) => state.toasts);

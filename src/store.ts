@@ -1,7 +1,7 @@
 import { Toast } from '@types';
+import { uniqueId } from 'lodash';
 import { create } from 'zustand';
 import { combine } from 'zustand/middleware';
-import { uniqueId } from 'lodash';
 
 interface State {
   toasts: Toast[];

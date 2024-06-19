@@ -1,18 +1,19 @@
-import { Flex, Card, Button } from '@radix-ui/themes';
-import { useCreateProfileForm } from '../hooks/forms/useCreateProfileForm';
 import { InfoCallout, ProfileForm, RadioCardFormField } from '@components';
+import { Button,Card, Flex } from '@radix-ui/themes';
+
+import { useCreateProfileForm } from '../hooks/forms/useCreateProfileForm';
 
 const userTypeOptions = [
   {
+    description: 'I am a landowner looking to register one or more properties with CBYC',
     label: 'Landowner',
     value: 'landowner',
-    description: 'I am a landowner looking to register one or more properties with CBYC',
   },
   {
-    label: 'Forester',
-    value: 'forester',
     description:
       'I run a business related to forest management and want to get connected with CBYC',
+    label: 'Forester',
+    value: 'forester',
   },
 ];
 

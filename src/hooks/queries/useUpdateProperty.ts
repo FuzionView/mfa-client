@@ -1,5 +1,6 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
 import { Property } from '@types';
+
 import { updateProperty } from '../../api/properties';
 
 interface UseUpdatePropertyArgs {
@@ -9,13 +10,9 @@ interface UseUpdatePropertyArgs {
 
 type MutateArgs = { userId: string; propertyId: number; property: Property };
 
-export const useUpdateProperty = ({ onSuccess, onError }: UseUpdatePropertyArgs) => {
-  return useMutation({
+export const useUpdateProperty = ({ onSuccess, onError }: UseUpdatePropertyArgs) => useMutation({
     // @ts-expect-error - this is fine
-    mutationFn: (data: MutateArgs) => {
-      return updateProperty(data.userId, data.propertyId, data.property);
-    },
-    onSuccess,
+    mutationFn: (data: MutateArgs) => updateProperty(data.userId, data.propertyId, data.property),
     onError,
+    onSuccess,
   });
-};

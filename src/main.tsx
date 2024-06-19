@@ -5,12 +5,12 @@ import { AuthenticationProvider } from '@contexts';
 import { Theme } from '@radix-ui/themes';
 import { QueryClientProvider } from '@tanstack/react-query';
 
+import { ToastContainer } from './components/Toast/ToastContainer.tsx';
 import { queryClient } from './queryClient.ts';
 import { router } from './router.tsx';
 
 import '@radix-ui/themes/styles.css';
 import '@styles/main.scss';
-import { ToastContainer } from './components/Toast/ToastContainer.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

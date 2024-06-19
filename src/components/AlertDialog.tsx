@@ -1,5 +1,5 @@
-import { AlertDialog as A, Button, Flex } from '@radix-ui/themes';
 import { ReactNode } from 'react';
+import { AlertDialog as A, Button, Flex } from '@radix-ui/themes';
 
 interface Props {
   title: string;
@@ -15,8 +15,7 @@ export const AlertDialog: React.FC<Props> = ({
   description,
   onConfirm,
   onCancel,
-}) => {
-  return (
+}) => (
     <A.Root>
       <A.Trigger>{trigger}</A.Trigger>
       <A.Content maxWidth="450px">
@@ -38,4 +37,3 @@ export const AlertDialog: React.FC<Props> = ({
       </A.Content>
     </A.Root>
   );
-};

@@ -1,31 +1,32 @@
-import { Property } from '@types';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { usePersistFormInput } from '../usePersistFormInput';
 import { useMemo } from 'react';
-import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useStore } from '../../store';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Property } from '@types';
+import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
+
+import { useStore } from '../../store';
 import { useCreateProperty } from '../queries/useCreateProperty';
+import { usePersistFormInput } from '../usePersistFormInput';
 
 const DEFAULT_VALUES: Partial<Property> = {
-  address_type: undefined,
   address: '',
   address_2: '',
+  address_type: undefined,
   city: '',
-  date_added: new Date(),
-  state: '',
-  zip: '',
-  section: '',
-  township: '',
-  range: '',
+  comments: '',
   county: '',
+  current_stewardship_plan: false,
+  date_added: new Date(),
   estimated_total_acres: undefined,
   parcel_id: '',
-  comments: '',
-  current_stewardship_plan: false,
+  range: '',
   plan_date: undefined,
+  section: '',
+  state: '',
+  township: '',
+  zip: '',
 };
 
 export const useCreatePropertyForm = () => {
@@ -35,20 +36,20 @@ export const useCreatePropertyForm = () => {
   const addToast = useStore((state) => state.addToast);
 
   const { mutate, isPending: isSubmitPending } = useCreateProperty({
-    onSuccess: () => {
-      addToast({
-        title: 'Success!',
-        message: 'Successfully added your property!',
-        intent: 'success',
-      });
-      navigate('/profile');
-    },
     onError: (error) => {
       addToast({
-        title: 'Error adding your property',
-        message: error?.message,
         intent: 'error',
+        message: error?.message,
+        title: 'Error adding your property',
       });
+    },
+    onSuccess: () => {
+      addToast({
+        intent: 'success',
+        message: 'Successfully added your property!',
+        title: 'Success!',
+      });
+      navigate('/profile');
     },
   });
 
@@ -68,7 +69,7 @@ export const useCreatePropertyForm = () => {
 
   const handleSubmit: SubmitHandler<Property> = (property) => {
     // @ts-expect-error this is fine
-    mutate({ userId: user.sub, property });
+    mutate({ property, userId: user.sub });
 
     // Clear localstorage
     saveInput({});
@@ -77,9 +78,9 @@ export const useCreatePropertyForm = () => {
   const handleError: SubmitErrorHandler<Property> = (error) => {
     console.error(error, form.getValues());
     addToast({
-      title: 'Form error',
-      message: JSON.stringify(Object.keys(error)),
       intent: 'error',
+      message: JSON.stringify(Object.keys(error)),
+      title: 'Form error',
     });
   };
 
@@ -90,5 +91,5 @@ export const useCreatePropertyForm = () => {
     saveInput(data);
   });
 
-  return { form, onSubmit, isSubmitPending };
+  return { form, isSubmitPending, onSubmit };
 };

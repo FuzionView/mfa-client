@@ -1,6 +1,7 @@
-import { Flex, RadioCards, Text } from '@radix-ui/themes';
 import { Controller, FieldValues, Path, useForm } from 'react-hook-form';
 import { CheckCircledIcon } from '@radix-ui/react-icons';
+import { Flex, RadioCards, Text } from '@radix-ui/themes';
+
 import { FormLabel } from './FormLabel';
 
 interface Option {
@@ -17,12 +18,12 @@ interface Props<Fields extends FieldValues> {
 }
 
 const getCheckStyle = (option: Option, value: any) => ({
+  color: 'var(--accent-9)',
   style: {
-    visibility: value === option.value ? ('visible' as const) : ('hidden' as const),
     height: '40px',
+    visibility: value === option.value ? ('visible' as const) : ('hidden' as const),
     width: '40px',
   },
-  color: 'var(--accent-9)',
 });
 
 export function RadioCardFormField<Fields extends FieldValues>({

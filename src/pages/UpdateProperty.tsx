@@ -1,11 +1,12 @@
-import { Flex, Card, Button, Box } from '@radix-ui/themes';
-import { PropertyForm } from '@components';
-import { useAuth0 } from '@auth0/auth0-react';
-import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { PropertyForm } from '@components';
+import { Box,Button, Card, Flex } from '@radix-ui/themes';
+
+import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog';
 import { useUpdatePropertyForm } from '../hooks/forms/useUpdatePropertyForm';
 import { useGetProperty } from '../hooks/queries/useGetProperty';
-import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog';
 
 export const UpdateProperty: React.FC = () => {
   const { user } = useAuth0();

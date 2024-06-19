@@ -4,6 +4,4 @@ import './LoadingSpinner.scss';
 
 type Props = Record<string, any>;
 
-export const LoadingSpinner = (props: Props) => {
-  return <ReloadIcon className="loading-spinner" {...props} />;
-};
+export const LoadingSpinner = (props: Props) => <ReloadIcon className="loading-spinner" {...props} />;

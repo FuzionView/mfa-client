@@ -1,17 +1,18 @@
-import { AssessmentContactMethod, AssessmentRequest } from '@types';
-import { usePersistFormInput } from '../usePersistFormInput';
-import { useNavigate } from 'react-router-dom';
-import { useStore } from '../../store';
-import { useCreateAssessmentRequest } from '../queries/useCreateAssessmentRequest';
 import { useMemo } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AssessmentContactMethod, AssessmentRequest } from '@types';
 import { AssessmentRequestSchema } from 'mfa-server/src/schemas/AssessmentRequestSchema';
 
+import { useStore } from '../../store';
+import { useCreateAssessmentRequest } from '../queries/useCreateAssessmentRequest';
+import { usePersistFormInput } from '../usePersistFormInput';
+
 const DEFAULT_VALUES: Partial<AssessmentRequest> = {
-  notes: null,
-  contact_method: AssessmentContactMethod.Email,
   availability: [],
+  contact_method: AssessmentContactMethod.Email,
+  notes: null,
 };
 
 export const useAssessmentRequestForm = (propertyId: number) => {
@@ -20,20 +21,20 @@ export const useAssessmentRequestForm = (propertyId: number) => {
   const addToast = useStore((state) => state.addToast);
 
   const { mutate, isPending: isSubmitPending } = useCreateAssessmentRequest({
-    onSuccess: () => {
-      addToast({
-        title: 'Success!',
-        message: 'Successfully submitted your assessment request!',
-        intent: 'success',
-      });
-      navigate('/profile');
-    },
     onError: (error) => {
       addToast({
-        title: 'Error submitting your assessment request',
-        message: error?.message,
         intent: 'error',
+        message: error?.message,
+        title: 'Error submitting your assessment request',
       });
+    },
+    onSuccess: () => {
+      addToast({
+        intent: 'success',
+        message: 'Successfully submitted your assessment request!',
+        title: 'Success!',
+      });
+      navigate('/profile');
     },
   });
 
@@ -53,7 +54,7 @@ export const useAssessmentRequestForm = (propertyId: number) => {
 
   const handleSubmit: SubmitHandler<AssessmentRequest> = (data: AssessmentRequest) => {
     // @ts-expect-error this is fine
-    mutate({ propertyId, assessmentRequest: data });
+    mutate({ assessmentRequest: data, propertyId });
 
     // clear cached form values from localstorage
     saveInput({});
@@ -63,9 +64,9 @@ export const useAssessmentRequestForm = (propertyId: number) => {
     console.error(error, form.getValues());
 
     addToast({
-      title: 'Form error',
-      message: JSON.stringify(Object.keys(error)),
       intent: 'error',
+      message: JSON.stringify(Object.keys(error)),
+      title: 'Form error',
     });
   };
 
@@ -76,5 +77,5 @@ export const useAssessmentRequestForm = (propertyId: number) => {
     saveInput(data);
   });
 
-  return { form, onSubmit, isSubmitPending };
+  return { form, isSubmitPending, onSubmit };
 };

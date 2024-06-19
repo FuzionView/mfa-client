@@ -1,9 +1,8 @@
 import * as React from 'react';
-import * as T from '@radix-ui/react-toast';
-import { Toast } from '@types';
-
 import { CrossCircledIcon, InfoCircledIcon } from '@radix-ui/react-icons';
+import * as T from '@radix-ui/react-toast';
 import { Box, Flex, Text } from '@radix-ui/themes';
+import { Toast } from '@types';
 
 interface ToastProps extends Toast {
   className?: string;

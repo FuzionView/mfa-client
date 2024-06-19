@@ -1,20 +1,21 @@
-import { Flex } from '@radix-ui/themes';
-import { TextFormField } from './FormFields/TextFormField';
-import { BooleanFormField } from './FormFields/BooleanFormField';
-import { InputType, Property, PropertyAddressType } from '@types';
-import { RadioCardFormField } from './FormFields/RadioCardFormField';
 import { UseFormReturn } from 'react-hook-form';
+import { Flex } from '@radix-ui/themes';
+import { InputType, Property, PropertyAddressType } from '@types';
+
+import { BooleanFormField } from './FormFields/BooleanFormField';
+import { RadioCardFormField } from './FormFields/RadioCardFormField';
+import { TextFormField } from './FormFields/TextFormField';
 
 const addressTypeOptions = [
   {
+    description: 'My property has a street address',
     label: 'Street Address',
     value: 'street',
-    description: 'My property has a street address',
   },
   {
+    description: 'My property location is described using township, range, and section ',
     label: 'Township, Range, Section (PLSS)',
     value: 'plss',
-    description: 'My property location is described using township, range, and section ',
   },
 ];
 

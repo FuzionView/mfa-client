@@ -1,5 +1,6 @@
-import { Flex, Switch } from '@radix-ui/themes';
 import { Controller, FieldValues, Path, useForm } from 'react-hook-form';
+import { Flex, Switch } from '@radix-ui/themes';
+
 import { FormLabel } from './FormLabel';
 
 interface Props<Fields extends FieldValues> {

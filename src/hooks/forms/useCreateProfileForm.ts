@@ -1,13 +1,14 @@
-import { UserProfile } from '@types';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
-import { useAuth0 } from '@auth0/auth0-react';
-import { usePersistFormInput } from '../usePersistFormInput';
 import { useMemo } from 'react';
-import { useCreateProfile } from '../queries/useCreateProfile';
-import { useStore } from '../../store';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { UserProfile } from '@types';
+import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
+
+import { useStore } from '../../store';
+import { useCreateProfile } from '../queries/useCreateProfile';
+import { usePersistFormInput } from '../usePersistFormInput';
 
 const DEFAULT_VALUES: Partial<UserProfile> = {
   address: '',
@@ -19,8 +20,8 @@ const DEFAULT_VALUES: Partial<UserProfile> = {
   last_name: '',
   mailing_list: true,
   mfa_member: false,
-  phone_2: '',
   phone: '',
+  phone_2: '',
   state: '',
   user_type: undefined,
   zip: '',
@@ -33,20 +34,20 @@ export const useCreateProfileForm = () => {
   const addToast = useStore((state) => state.addToast);
 
   const { mutate, isPending: isSubmitPending } = useCreateProfile({
-    onSuccess: () => {
-      addToast({
-        title: 'Success!',
-        message: 'Successfully created your profile!',
-        intent: 'success',
-      });
-      navigate('/profile');
-    },
     onError: (error) => {
       addToast({
-        title: 'Error creating your profile',
-        message: error?.message,
         intent: 'error',
+        message: error?.message,
+        title: 'Error creating your profile',
       });
+    },
+    onSuccess: () => {
+      addToast({
+        intent: 'success',
+        message: 'Successfully created your profile!',
+        title: 'Success!',
+      });
+      navigate('/profile');
     },
   });
 
@@ -66,7 +67,7 @@ export const useCreateProfileForm = () => {
 
   const handleSubmit: SubmitHandler<UserProfile> = (data: UserProfile) => {
     // @ts-expect-error this is fine
-    mutate({ userId: user.sub, profile: data });
+    mutate({ profile: data, userId: user.sub });
 
     // clear cached form values from localstorage
     saveInput({});
@@ -76,9 +77,9 @@ export const useCreateProfileForm = () => {
     console.error(error, form.getValues());
 
     addToast({
-      title: 'Form error',
-      message: JSON.stringify(Object.keys(error)),
       intent: 'error',
+      message: JSON.stringify(Object.keys(error)),
+      title: 'Form error',
     });
   };
 
@@ -89,5 +90,5 @@ export const useCreateProfileForm = () => {
     saveInput(data);
   });
 
-  return { form, onSubmit, isSubmitPending };
+  return { form, isSubmitPending, onSubmit };
 };

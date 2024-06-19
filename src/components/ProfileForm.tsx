@@ -1,16 +1,16 @@
-import { Flex } from '@radix-ui/themes';
-import { TextFormField } from './FormFields/TextFormField';
-import { BooleanFormField } from './FormFields/BooleanFormField';
-import { UserProfile, UserType } from '@types';
 import { UseFormReturn } from 'react-hook-form';
+import { Flex } from '@radix-ui/themes';
+import { UserProfile, UserType } from '@types';
+
+import { BooleanFormField } from './FormFields/BooleanFormField';
+import { TextFormField } from './FormFields/TextFormField';
 
 interface Props {
   userType?: UserType;
   form: UseFormReturn<UserProfile>;
 }
 
-export const ProfileForm: React.FC<Props> = ({ userType, form }) => {
-  return (
+export const ProfileForm: React.FC<Props> = ({ userType, form }) => (
     <Flex direction="column" gap="2" width={{ initial: 'auto', md: '400px' }}>
       <TextFormField<UserProfile> form={form} label="First Name" field="first_name" />
       <TextFormField<UserProfile> form={form} label="Last Name" field="last_name" />
@@ -29,4 +29,3 @@ export const ProfileForm: React.FC<Props> = ({ userType, form }) => {
       <BooleanFormField<UserProfile> form={form} label="Mailing List?" field="mailing_list" />
     </Flex>
   );
-};

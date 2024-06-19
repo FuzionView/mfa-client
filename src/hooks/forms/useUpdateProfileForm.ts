@@ -1,11 +1,12 @@
-import { UserProfile } from '@types';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
-import { useUpdateProfile } from '../queries/useUpdateProfile';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useStore } from '../../store';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { UserProfile } from '@types';
+import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
+
+import { useStore } from '../../store';
+import { useUpdateProfile } from '../queries/useUpdateProfile';
 
 const DEFAULT_VALUES: Partial<UserProfile> = {
   address: '',
@@ -17,8 +18,8 @@ const DEFAULT_VALUES: Partial<UserProfile> = {
   last_name: '',
   mailing_list: true,
   mfa_member: false,
-  phone_2: '',
   phone: '',
+  phone_2: '',
   state: '',
   user_type: undefined,
   zip: '',
@@ -35,39 +36,39 @@ export const useUpdateProfileForm = (profile: Partial<UserProfile> = DEFAULT_VAL
   });
 
   const { mutate, isPending: isSubmitPending } = useUpdateProfile({
-    onSuccess: () => {
-      addToast({
-        title: 'Success!',
-        message: 'Successfully updated your profile!',
-        intent: 'success',
-      });
-      navigate('/profile');
-    },
     onError: (error) => {
       addToast({
-        title: 'Error updating your profile',
-        message: error?.message,
         intent: 'error',
+        message: error?.message,
+        title: 'Error updating your profile',
       });
+    },
+    onSuccess: () => {
+      addToast({
+        intent: 'success',
+        message: 'Successfully updated your profile!',
+        title: 'Success!',
+      });
+      navigate('/profile');
     },
   });
 
   const handleSubmit: SubmitHandler<UserProfile> = (data) => {
     // @ts-expect-error this is fine
-    mutate({ userId: user.sub, profile: data });
+    mutate({ profile: data, userId: user.sub });
   };
 
   const handleError: SubmitErrorHandler<UserProfile> = (error) => {
     console.error(error, form.getValues());
 
     addToast({
-      title: 'Form error',
-      message: JSON.stringify(Object.keys(error)),
       intent: 'error',
+      message: JSON.stringify(Object.keys(error)),
+      title: 'Form error',
     });
   };
 
   const onSubmit = form.handleSubmit(handleSubmit, handleError);
 
-  return { form, onSubmit, isSubmitPending };
+  return { form, isSubmitPending, onSubmit };
 };

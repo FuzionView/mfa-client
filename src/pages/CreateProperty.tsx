@@ -1,7 +1,8 @@
-import { Flex, Button, Card } from '@radix-ui/themes';
-import { useCreatePropertyForm } from '../hooks/forms/useCreatePropertyForm';
-import { PropertyForm } from '@components';
 import { Link } from 'react-router-dom';
+import { PropertyForm } from '@components';
+import { Button, Card,Flex } from '@radix-ui/themes';
+
+import { useCreatePropertyForm } from '../hooks/forms/useCreatePropertyForm';
 
 export const CreateProperty: React.FC = () => {
   const { form, onSubmit, isSubmitPending } = useCreatePropertyForm();

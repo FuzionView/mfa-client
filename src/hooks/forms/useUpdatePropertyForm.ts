@@ -1,30 +1,31 @@
-import { Property } from '@types';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo } from 'react';
-import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
-import { useAuth0 } from '@auth0/auth0-react';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Property } from '@types';
+import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
+
 import { useStore } from '../../store';
 import { useUpdateProperty } from '../queries/useUpdateProperty';
 
 const DEFAULT_VALUES: Partial<Property> = {
-  address_type: undefined,
   address: '',
   address_2: '',
+  address_type: undefined,
   city: '',
-  date_added: new Date(),
-  state: '',
-  zip: '',
-  section: '',
-  township: '',
-  range: '',
+  comments: '',
   county: '',
+  current_stewardship_plan: false,
+  date_added: new Date(),
   estimated_total_acres: undefined,
   parcel_id: '',
-  comments: '',
-  current_stewardship_plan: false,
+  range: '',
   plan_date: undefined,
+  section: '',
+  state: '',
+  township: '',
+  zip: '',
 };
 
 export const useUpdatePropertyForm = (propertyId: number) => {
@@ -46,39 +47,39 @@ export const useUpdatePropertyForm = (propertyId: number) => {
   });
 
   const { mutate, isPending: isSubmitPending } = useUpdateProperty({
-    onSuccess: () => {
-      addToast({
-        title: 'Success!',
-        message: 'Successfully updated property!',
-        intent: 'success',
-      });
-      navigate('/profile');
-    },
     onError: (error) => {
       addToast({
-        title: 'Error updating property',
-        message: error?.message,
         intent: 'error',
+        message: error?.message,
+        title: 'Error updating property',
       });
+    },
+    onSuccess: () => {
+      addToast({
+        intent: 'success',
+        message: 'Successfully updated property!',
+        title: 'Success!',
+      });
+      navigate('/profile');
     },
   });
 
   const handleSubmit: SubmitHandler<Property> = (data) => {
     // @ts-expect-error this is fine
-    mutate({ userId: user.sub, propertyId, property: data });
+    mutate({ property: data, propertyId, userId: user.sub });
   };
 
   const handleError: SubmitErrorHandler<Property> = (error) => {
     console.error('Form error', error);
 
     addToast({
-      title: 'Form error',
-      message: JSON.stringify(Object.keys(error)),
       intent: 'error',
+      message: JSON.stringify(Object.keys(error)),
+      title: 'Form error',
     });
   };
 
   const onSubmit = form.handleSubmit(handleSubmit, handleError);
 
-  return { form, onSubmit, isSubmitPending };
+  return { form, isSubmitPending, onSubmit };
 };

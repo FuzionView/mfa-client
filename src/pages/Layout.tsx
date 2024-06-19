@@ -1,16 +1,16 @@
-import { Box, Container, Flex, Heading } from '@radix-ui/themes';
-import { Outlet, matchPath, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { matchPath, Outlet, useLocation } from 'react-router-dom';
 import { LogoutButton } from '@components';
+import { Box, Container, Flex, Heading } from '@radix-ui/themes';
 
 const titles: Record<string, string> = {
   '/': '',
-  '/profile': 'Profile',
   '/create-profile': 'Create your Profile',
-  '/update-profile': 'Update your Profile',
   '/create-property': 'Add a New Property',
-  '/update-property/:id': 'Update Property',
+  '/profile': 'Profile',
   '/request-assessment/:id': 'Request Property Assessment',
+  '/update-profile': 'Update your Profile',
+  '/update-property/:id': 'Update Property',
 };
 
 export const Layout = () => {

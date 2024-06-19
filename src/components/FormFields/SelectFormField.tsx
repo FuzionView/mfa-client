@@ -1,7 +1,8 @@
-import { Flex, Select } from '@radix-ui/themes';
 import { Controller, FieldValues, Path, useForm } from 'react-hook-form';
-import { FormLabel } from './FormLabel';
+import { Flex, Select } from '@radix-ui/themes';
+
 import { FormError } from './FormError';
+import { FormLabel } from './FormLabel';
 
 interface Option {
   label: string;
@@ -26,7 +27,7 @@ export function SelectFormField<Fields extends FieldValues>({
   const { errors } = form.formState;
   const error = errors[field];
 
-  let addlProps: Record<string, string> = {};
+  const addlProps: Record<string, string> = {};
   if (error?.message) {
     addlProps.color = 'red';
   }

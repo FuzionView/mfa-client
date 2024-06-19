@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@radix-ui/themes';
-import { AlertDialog } from '../AlertDialog';
+
 import { useDeleteProperty } from '../../hooks/queries/useDeleteProperty';
 import { useStore } from '../../store';
-import { useNavigate } from 'react-router-dom';
+import { AlertDialog } from '../AlertDialog';
 
 interface Props {
   userId?: string;
@@ -14,26 +15,26 @@ export const DeletePropertyDialog: React.FC<Props> = ({ userId, propertyId }) =>
   const navigate = useNavigate();
 
   const { mutate: deleteProperty } = useDeleteProperty({
-    onSuccess: () => {
-      addToast({
-        title: 'Success!',
-        message: 'Property removed',
-        intent: 'success',
-      });
-      navigate('/profile');
-    },
     onError: (error) => {
       addToast({
-        title: 'Error removing property',
-        message: error?.message,
         intent: 'error',
+        message: error?.message,
+        title: 'Error removing property',
       });
+    },
+    onSuccess: () => {
+      addToast({
+        intent: 'success',
+        message: 'Property removed',
+        title: 'Success!',
+      });
+      navigate('/profile');
     },
   });
 
   const handleConfirm = () => {
     // @ts-expect-error this is fine
-    deleteProperty({ userId, propertyId });
+    deleteProperty({ propertyId, userId });
   };
 
   // noop

@@ -1,10 +1,11 @@
-import { Card, Button, Callout, Flex, Heading, Box } from '@radix-ui/themes';
-import { useGetProperties } from '../hooks/queries/useGetProperties';
-import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
+import { useAuth0 } from '@auth0/auth0-react';
 import { AddressDisplay } from '@components';
+import { Box,Button, Callout, Card, Flex, Heading } from '@radix-ui/themes';
+import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
 import { formatRelative } from 'date-fns';
+
+import { useGetProperties } from '../hooks/queries/useGetProperties';
 
 interface PropertyInfoProps {
   property: PropertyWithIdAndStatus;
@@ -56,10 +57,9 @@ const RequestAssessmentBadge = ({ property }: PropertyInfoProps) => {
   return null;
 };
 
-const PropertyInfo = ({ property }: PropertyInfoProps) => {
-  return (
+const PropertyInfo = ({ property }: PropertyInfoProps) => (
     <Card
-      style={{ display: 'flex', flexDirection: 'column', minWidth: '300px', gap: 'var(--space-2)' }}
+      style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', minWidth: '300px' }}
     >
       <AddressDisplay data={property} />
       <Box style={{ flex: 1 }} />
@@ -74,7 +74,6 @@ const PropertyInfo = ({ property }: PropertyInfoProps) => {
       </Flex>
     </Card>
   );
-};
 
 export const PropertyDisplay: React.FC = () => {
   const { user } = useAuth0();
