@@ -1,9 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Home, Profile, RequireAuth, CreateProfile, UpdateProfile } from '@pages';
-import { Layout } from './pages/Layout';
-import { CreateProperty } from './pages/CreateProperty';
-import { UpdateProperty } from './pages/UpdateProperty';
-import { CreateAssessmentRequest } from './pages/CreateAssessmentRequest';
+import {
+  CreateAssessmentRequest,
+  CreateProfile,
+  CreateProperty,
+  Home,
+  Layout,
+  Profile,
+  RequireAuth,
+  UpdateProfile,
+  UpdateProperty,
+} from '@pages';
 
 export const router = createBrowserRouter([
   {
@@ -15,8 +21,8 @@ export const router = createBrowserRouter([
         element: <RequireAuth />,
         children: [
           {
-            element: <Profile />,
             path: '/profile',
+            element: <Profile />,
           },
           {
             path: '/create-profile',
