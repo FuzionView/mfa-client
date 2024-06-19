@@ -11,13 +11,13 @@ interface Option {
 }
 
 interface Props<Fields extends FieldValues> {
+  field: Path<Fields>;
   form: ReturnType<typeof useForm<Fields>>;
   label?: string;
-  field: Path<Fields>;
   options: Option[];
 }
 
-const getCheckStyle = (option: Option, value: any) => ({
+const getCheckStyle = (option: Option, value: string | number) => ({
   color: 'var(--accent-9)',
   style: {
     height: '40px',

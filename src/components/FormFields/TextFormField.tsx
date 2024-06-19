@@ -13,14 +13,14 @@ interface Props<Fields extends FieldValues> {
   inputType?: InputType;
 }
 
-const numberSetValueAs = (v: any) => {
+const numberSetValueAs = (v: string) => {
   if (v) {
     return parseInt(v);
   }
   return undefined;
 };
 
-const dateSetValueAs = (v: any) => {
+const dateSetValueAs = (v: string) => {
   if (v) {
     return new Date(v);
   }
