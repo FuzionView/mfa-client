@@ -16,24 +16,24 @@ export const AlertDialog: React.FC<Props> = ({
   onConfirm,
   onCancel,
 }) => (
-    <A.Root>
-      <A.Trigger>{trigger}</A.Trigger>
-      <A.Content maxWidth="450px">
-        <A.Title>{title}</A.Title>
-        <A.Description size="2">{description}</A.Description>
+  <A.Root>
+    <A.Trigger>{trigger}</A.Trigger>
+    <A.Content maxWidth="450px">
+      <A.Title>{title}</A.Title>
+      <A.Description size="2">{description}</A.Description>
 
-        <Flex gap="3" mt="4" justify="end">
-          <A.Cancel>
-            <Button variant="outline" color="gray" onClick={onCancel}>
-              Cancel
-            </Button>
-          </A.Cancel>
-          <A.Action>
-            <Button variant="solid" color="red" onClick={onConfirm}>
-              Confirm
-            </Button>
-          </A.Action>
-        </Flex>
-      </A.Content>
-    </A.Root>
-  );
+      <Flex gap="3" mt="4" justify="end">
+        <A.Cancel>
+          <Button variant="outline" color="gray" onClick={onCancel}>
+            Cancel
+          </Button>
+        </A.Cancel>
+        <A.Action>
+          <Button variant="solid" color="red" onClick={onConfirm}>
+            Confirm
+          </Button>
+        </A.Action>
+      </Flex>
+    </A.Content>
+  </A.Root>
+);

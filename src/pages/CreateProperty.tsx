@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { PropertyForm } from '@components';
-import { Button, Card,Flex } from '@radix-ui/themes';
+import { Button, Card, Flex } from '@radix-ui/themes';
 
 import { useCreatePropertyForm } from '../hooks/forms/useCreatePropertyForm';
 

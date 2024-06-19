@@ -1,5 +1,5 @@
 import { InfoCallout, ProfileForm, RadioCardFormField } from '@components';
-import { Button,Card, Flex } from '@radix-ui/themes';
+import { Button, Card, Flex } from '@radix-ui/themes';
 
 import { useCreateProfileForm } from '../hooks/forms/useCreateProfileForm';
 

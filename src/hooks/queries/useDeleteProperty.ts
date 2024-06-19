@@ -9,7 +9,8 @@ interface UseDeletePropertyArgs {
 
 type MutateArgs = { userId: string; propertyId: number };
 
-export const useDeleteProperty = ({ onSuccess, onError }: UseDeletePropertyArgs) => useMutation({
+export const useDeleteProperty = ({ onSuccess, onError }: UseDeletePropertyArgs) =>
+  useMutation({
     // @ts-expect-error - this is fine
     mutationFn: (data: MutateArgs) => deleteProperty(data.userId, data.propertyId),
     onError,

@@ -13,9 +13,11 @@ type MutateArgs = { propertyId: number; assessmentRequest: AssessmentRequest };
 export const useCreateAssessmentRequest = ({
   onSuccess,
   onError,
-}: UseCreateAssessmentRequestArgs) => useMutation({
+}: UseCreateAssessmentRequestArgs) =>
+  useMutation({
     // @ts-expect-error - this is fine
-    mutationFn: (data: MutateArgs) => createAssessmentRequest(data.propertyId, data.assessmentRequest),
+    mutationFn: (data: MutateArgs) =>
+      createAssessmentRequest(data.propertyId, data.assessmentRequest),
     onError,
     onSuccess,
   });

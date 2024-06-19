@@ -10,7 +10,8 @@ interface UseUpdateProfileArgs {
 
 type MutateArgs = { userId: string; profile: UserProfile };
 
-export const useCreateProfile = ({ onSuccess, onError }: UseUpdateProfileArgs) => useMutation({
+export const useCreateProfile = ({ onSuccess, onError }: UseUpdateProfileArgs) =>
+  useMutation({
     // @ts-expect-error - this is fine
     mutationFn: (data: MutateArgs) => createUserProfile(data.userId, data.profile),
     onError,

@@ -7,10 +7,10 @@ interface Props {
 }
 
 export const LoadingCallout = ({ text }: Props) => (
-    <Callout.Root color="gray">
-      <Flex gap="2" align="center">
-        <LoadingSpinner style={{ height: 'var(--font-size-5)', width: 'var(--font-size-5)' }} />
-        {text}
-      </Flex>
-    </Callout.Root>
-  );
+  <Callout.Root color="gray">
+    <Flex gap="2" align="center">
+      <LoadingSpinner style={{ height: 'var(--font-size-5)', width: 'var(--font-size-5)' }} />
+      {text}
+    </Flex>
+  </Callout.Root>
+);

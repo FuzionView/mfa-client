@@ -6,12 +6,12 @@ interface Props {
 }
 
 export const FormLabel: React.FC<Props> = ({ children, isOptional = false }) => (
-    <Flex gap="1" align="baseline">
-      <Text color="gray">
-        <strong>{children}</strong>
-      </Text>
-      <Text size="1" color="gray">
-        {isOptional && '(optional)'}
-      </Text>
-    </Flex>
-  );
+  <Flex gap="1" align="baseline">
+    <Text color="gray">
+      <strong>{children}</strong>
+    </Text>
+    <Text size="1" color="gray">
+      {isOptional && '(optional)'}
+    </Text>
+  </Flex>
+);

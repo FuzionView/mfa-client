@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { PropertyForm } from '@components';
-import { Box,Button, Card, Flex } from '@radix-ui/themes';
+import { Box, Button, Card, Flex } from '@radix-ui/themes';
 
 import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog';
 import { useUpdatePropertyForm } from '../hooks/forms/useUpdatePropertyForm';

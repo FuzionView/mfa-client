@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { AddressDisplay } from '@components';
-import { Box,Button, Callout, Card, Flex, Heading } from '@radix-ui/themes';
+import { Box, Button, Callout, Card, Flex, Heading } from '@radix-ui/themes';
 import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
 import { formatRelative } from 'date-fns';
 
@@ -58,22 +58,22 @@ const RequestAssessmentBadge = ({ property }: PropertyInfoProps) => {
 };
 
 const PropertyInfo = ({ property }: PropertyInfoProps) => (
-    <Card
-      style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', minWidth: '300px' }}
-    >
-      <AddressDisplay data={property} />
-      <Box style={{ flex: 1 }} />
-      <Flex>
-        <RequestAssessmentBadge property={property} />
-      </Flex>
-      <Flex gap="1" justify="end">
-        <RequestAssessmentButton property={property} />
-        <Link to={`/update-property/${property.id}`}>
-          <Button>Edit</Button>
-        </Link>
-      </Flex>
-    </Card>
-  );
+  <Card
+    style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', minWidth: '300px' }}
+  >
+    <AddressDisplay data={property} />
+    <Box style={{ flex: 1 }} />
+    <Flex>
+      <RequestAssessmentBadge property={property} />
+    </Flex>
+    <Flex gap="1" justify="end">
+      <RequestAssessmentButton property={property} />
+      <Link to={`/update-property/${property.id}`}>
+        <Button>Edit</Button>
+      </Link>
+    </Flex>
+  </Card>
+);
 
 export const PropertyDisplay: React.FC = () => {
   const { user } = useAuth0();
