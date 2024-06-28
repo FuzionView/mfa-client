@@ -17,14 +17,14 @@ export const Profile: React.FC = () => {
     return <LoadingCallout text="Loading profile..." />;
   }
 
-  if (isError) {
-    return <Callout.Root color="red">Error retrieving profile</Callout.Root>;
-  }
-
   // If there is no user data associated with this user ID, then make them
   // complete the profile form
-  if (profileData && 'error' in profileData) {
+  if (profileData && 'error' in profileData && profileData.error === 'User not found') {
     navigate('/create-profile');
+  }
+
+  if (isError) {
+    return <Callout.Root color="red">Error retrieving profile</Callout.Root>;
   }
 
   return (
