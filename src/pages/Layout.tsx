@@ -1,7 +1,9 @@
 import { Helmet } from 'react-helmet';
 import { matchPath, Outlet, useLocation } from 'react-router-dom';
-import { LogoutButton } from '@components';
+
 import { Box, Container, Flex, Heading } from '@radix-ui/themes';
+
+import { LogoutButton } from '@components';
 
 const titles: Record<string, string> = {
   '/': '',

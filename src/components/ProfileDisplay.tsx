@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Box, Button, Callout, Flex } from '@radix-ui/themes';
-import { UserProfile } from '@types';
 
+import { Box, Button, Callout, Flex } from '@radix-ui/themes';
+
+import { UserProfile } from '@types';
 import { useGetUserProfile } from '../hooks/queries/useGetUserProfile';
 
 interface Props {

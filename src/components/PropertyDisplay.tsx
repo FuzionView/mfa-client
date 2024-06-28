@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { AddressDisplay } from '@components';
-import { Box, Button, Callout, Card, Flex, Heading } from '@radix-ui/themes';
-import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
 import { formatRelative } from 'date-fns';
 
+import { Box, Button, Callout, Card, Flex, Heading } from '@radix-ui/themes';
+
+import { AddressDisplay } from '@components';
+import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
 import { useGetProperties } from '../hooks/queries/useGetProperties';
 
 interface PropertyInfoProps {

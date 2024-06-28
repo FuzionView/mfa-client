@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { ProfileForm } from '@components';
+
 import { Button, Card, Flex } from '@radix-ui/themes';
 
+import { ProfileForm } from '@components';
 import { useUpdateProfileForm } from '../hooks/forms/useUpdateProfileForm';
 import { useGetUserProfile } from '../hooks/queries/useGetUserProfile';
 

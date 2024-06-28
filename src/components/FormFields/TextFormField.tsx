@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { FieldValues, Path, RegisterOptions, useForm } from 'react-hook-form';
-import { Flex, Text, TextField } from '@radix-ui/themes';
-import { InputType } from '@types';
 
+import { Flex, Text, TextField } from '@radix-ui/themes';
+
+import { InputType } from '@types';
 import { FormLabel } from './FormLabel';
 
 interface Props<Fields extends FieldValues> {

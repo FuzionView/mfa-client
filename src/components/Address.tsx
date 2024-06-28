@@ -1,4 +1,5 @@
 import { Box, Flex } from '@radix-ui/themes';
+
 import { Address, Property, PropertyAddressType, PropertyWithId } from '@types';
 
 interface Props {

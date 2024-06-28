@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { ProfileDisplay, PropertyDisplay } from '@components';
+
 import { Callout, Card, Flex } from '@radix-ui/themes';
 
+import { ProfileDisplay, PropertyDisplay } from '@components';
 import { LoadingCallout } from '../components/LoadingCallout';
 import { useGetUserProfile } from '../hooks/queries/useGetUserProfile';
 

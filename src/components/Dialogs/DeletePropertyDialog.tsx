@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@radix-ui/themes';
 
 import { useDeleteProperty } from '../../hooks/queries/useDeleteProperty';

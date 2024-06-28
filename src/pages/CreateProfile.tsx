@@ -1,6 +1,6 @@
-import { InfoCallout, ProfileForm, RadioCardFormField } from '@components';
 import { Button, Card, Flex } from '@radix-ui/themes';
 
+import { InfoCallout, ProfileForm, RadioCardFormField } from '@components';
 import { useCreateProfileForm } from '../hooks/forms/useCreateProfileForm';
 
 const userTypeOptions = [

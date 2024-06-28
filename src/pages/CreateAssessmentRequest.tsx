@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Button, Card, Flex } from '@radix-ui/themes';
 import { AssessmentContactMethod, AssessmentRequest } from 'mfa-server/src/types';
+
+import { Button, Card, Flex } from '@radix-ui/themes';
 
 import { MultiSelectFormField } from '../components/FormFields/MultiSelectFormField';
 import { SelectFormField } from '../components/FormFields/SelectFormField';

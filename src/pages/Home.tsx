@@ -1,8 +1,9 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { LoginButton } from '@components';
+
 import { Card, Flex, Heading, Text } from '@radix-ui/themes';
 
+import { LoginButton } from '@components';
 import { ProfileButton } from '../components/ProfileButton';
 
 export const Home: React.FC = () => {

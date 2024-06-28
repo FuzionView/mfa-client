@@ -3,9 +3,9 @@ import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { UserProfile } from '@types';
 import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
 
+import { UserProfile } from '@types';
 import { useStore } from '../../store';
 import { useCreateProfile } from '../queries/useCreateProfile';
 import { usePersistFormInput } from '../usePersistFormInput';

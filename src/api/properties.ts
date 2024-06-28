@@ -1,5 +1,6 @@
-import { Property } from '@types';
 import axios from 'axios';
+
+import { Property } from '@types';
 
 export const getProperties = (userId: string) =>
   axios.get(`http://localhost:4000/properties/${userId}`);

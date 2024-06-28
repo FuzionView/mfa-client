@@ -1,5 +1,6 @@
-import { UserProfile } from '@types';
 import axios from 'axios';
+
+import { UserProfile } from '@types';
 
 export const getUserProfile = (userId: string) =>
   axios.get(`http://localhost:4000/users/${userId}`);

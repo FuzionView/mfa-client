@@ -1,7 +1,6 @@
 import * as T from '@radix-ui/react-toast';
 
 import { useStore } from '../../store';
-
 import { ToastComponent } from './ToastComponent';
 
 import './Toast.scss';

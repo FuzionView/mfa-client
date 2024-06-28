@@ -1,6 +1,6 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
-import { UserProfile } from '@types';
 
+import { UserProfile } from '@types';
 import { createUserProfile } from '../../api/users';
 
 interface UseUpdateProfileArgs {

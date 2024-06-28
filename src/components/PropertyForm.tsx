@@ -1,7 +1,8 @@
 import { UseFormReturn } from 'react-hook-form';
-import { Flex } from '@radix-ui/themes';
-import { InputType, Property, PropertyAddressType } from '@types';
 
+import { Flex } from '@radix-ui/themes';
+
+import { InputType, Property, PropertyAddressType } from '@types';
 import { BooleanFormField } from './FormFields/BooleanFormField';
 import { RadioCardFormField } from './FormFields/RadioCardFormField';
 import { TextFormField } from './FormFields/TextFormField';

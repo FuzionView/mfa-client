@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import { AuthenticationProvider } from '@contexts';
-import { Theme } from '@radix-ui/themes';
 import { QueryClientProvider } from '@tanstack/react-query';
 
+import { Theme } from '@radix-ui/themes';
+
+import { AuthenticationProvider } from '@contexts';
 import { ToastContainer } from './components/Toast/ToastContainer.tsx';
 import { queryClient } from './queryClient.ts';
 import { router } from './router.tsx';

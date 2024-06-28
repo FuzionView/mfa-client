@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
+
 import { ExitIcon } from '@radix-ui/react-icons';
 import { Button } from '@radix-ui/themes';
 
