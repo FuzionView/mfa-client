@@ -7,7 +7,7 @@ export * from './InfoCallout';
 export * from './LoginButton';
 export * from './LogoutButton';
 export * from './ProfileButton';
-export * from './ProfileDisplay';
 export * from './ProfileForm';
 export * from './PropertyDisplay';
 export * from './PropertyForm';
+export * from './UserInfoDisplay';

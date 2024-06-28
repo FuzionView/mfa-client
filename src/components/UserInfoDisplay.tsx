@@ -10,7 +10,7 @@ interface Props {
   profileData?: UserProfile;
 }
 
-export const ProfileDisplay: React.FC<Props> = () => {
+export const UserInfoDisplay: React.FC<Props> = () => {
   const { user } = useAuth0();
   const { data: profileData, isError } = useGetUserProfile(user?.sub);
 
