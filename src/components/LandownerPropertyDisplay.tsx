@@ -76,7 +76,8 @@ const PropertyInfo = ({ property }: PropertyInfoProps) => (
   </Card>
 );
 
-export const PropertyDisplay: React.FC = () => {
+/** Displays a list of properties for a user */
+export const LandownerPropertyDisplay: React.FC = () => {
   const { user } = useAuth0();
   const { data: propertyData, isError } = useGetProperties(user?.sub);
 
