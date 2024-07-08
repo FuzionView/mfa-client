@@ -12,11 +12,12 @@ export const LogoutButton: React.FC = () => {
   const handleLogout = () => {
     logout({
       logoutParams: { returnTo: window.location.origin },
-    });
-    addToast({
-      intent: 'success',
-      message: 'You have been logged out.',
-      title: 'Success!',
+    }).then(() => {
+      addToast({
+        intent: 'success',
+        message: 'You have been logged out.',
+        title: 'Success!',
+      });
     });
   };
 

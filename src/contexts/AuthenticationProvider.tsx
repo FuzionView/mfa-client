@@ -1,6 +1,6 @@
 import { Auth0Provider } from '@auth0/auth0-react';
 
-import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from '../config';
+import { AUTH0_CLIENT_ID, AUTH0_DOMAIN, AUTHO_AUDIENCE } from '../config';
 
 interface Props {
   children: JSX.Element;
@@ -18,6 +18,7 @@ export const AuthenticationProvider: React.FunctionComponent<Props> = ({ childre
       domain={AUTH0_DOMAIN}
       clientId={AUTH0_CLIENT_ID}
       authorizationParams={{
+        audience: AUTHO_AUDIENCE,
         redirect_uri: redirectUri,
       }}
     >

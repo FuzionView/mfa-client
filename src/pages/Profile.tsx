@@ -27,17 +27,13 @@ export const Profile: React.FC = () => {
     return <LoadingCallout text="Loading profile..." />;
   }
 
-  // If there is no user data associated with this user ID, then make them
-  // complete the profile form. If it's a different error, show an error message
-  if (isError) {
+  if (isError || !profileData) {
     return <Callout.Root color="red">Error retrieving profile</Callout.Root>;
   }
 
-  const { user_type } = profileData as UserProfile;
-
   return (
     <Flex direction="column" gap="3">
-      {user_type === UserType.Forester ? <ForesterProfile /> : <LandownerProfile />}
+      {profileData?.user_type === UserType.Forester ? <ForesterProfile /> : <LandownerProfile />}
     </Flex>
   );
 };
