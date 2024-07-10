@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { UserProfile, UserType } from 'mfa-server/src/types';
+import { UserType } from 'mfa-server/src/types';
 
 import { Callout, Flex } from '@radix-ui/themes';
 
@@ -33,7 +33,7 @@ export const Profile: React.FC = () => {
 
   return (
     <Flex direction="column" gap="3">
-      {profileData?.user_type === UserType.Forester ? <ForesterProfile /> : <LandownerProfile />}
+      {profileData.user_type === UserType.Forester ? <ForesterProfile /> : <LandownerProfile />}
     </Flex>
   );
 };
