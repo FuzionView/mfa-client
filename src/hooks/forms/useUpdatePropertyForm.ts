@@ -7,7 +7,7 @@ import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
 
 import { Property } from '@types';
 import { useStore } from '../../store';
-import { useUpdateProperty } from '../queries/useUpdateProperty';
+import { useUpdateProperty } from '../queries/currentUser/useUpdateProperty';
 
 const DEFAULT_VALUES: Partial<Property> = {
   address: '',

@@ -3,7 +3,7 @@ import { ForesterApprovalStatus, UserType } from 'mfa-server/src/types';
 
 import { Callout, Card } from '@radix-ui/themes';
 
-import { useGetUserProfile } from '../hooks/queries/useGetUserProfile';
+import { useGetUserProfile } from '../hooks/queries/currentUser/useGetUserProfile';
 import { UserInfoDisplay } from './UserInfoDisplay';
 
 export const ForesterProfile: React.FC = () => {

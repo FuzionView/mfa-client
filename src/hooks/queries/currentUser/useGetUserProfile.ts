@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { UserNotFoundError, UserProfile } from '@types';
-import { getUserProfile } from '../../api/users';
+import { getCurrentUserProfile } from '../../../api/currentUser/users';
 
 export const useGetUserProfile = (userId?: string) =>
   useQuery({
     enabled: !!userId,
     queryFn: () =>
-      getUserProfile(userId!).then(
+      getCurrentUserProfile().then(
         ({ data }) => (data[0] as UserProfile) ?? (data as UserNotFoundError),
       ),
     queryKey: ['users', userId],

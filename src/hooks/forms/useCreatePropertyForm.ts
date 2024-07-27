@@ -7,7 +7,7 @@ import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
 
 import { Property } from '@types';
 import { useStore } from '../../store';
-import { useCreateProperty } from '../queries/useCreateProperty';
+import { useCreateProperty } from '../queries/currentUser/useCreateProperty';
 import { usePersistFormInput } from '../usePersistFormInput';
 
 const DEFAULT_VALUES: Partial<Property> = {

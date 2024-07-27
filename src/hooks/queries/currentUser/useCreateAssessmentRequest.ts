@@ -1,7 +1,7 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
 
 import { AssessmentRequest } from '@types';
-import { createAssessmentRequest } from '../../api/assessmentRequests';
+import { createCurrentUserAssessmentRequest } from '../../../api/currentUser/assessmentRequests';
 
 interface UseCreateAssessmentRequestArgs {
   onSuccess?: MutationOptions['onSuccess'];
@@ -17,7 +17,7 @@ export const useCreateAssessmentRequest = ({
   useMutation({
     // @ts-expect-error - this is fine
     mutationFn: (data: MutateArgs) =>
-      createAssessmentRequest(data.propertyId, data.assessmentRequest),
+      createCurrentUserAssessmentRequest(data.propertyId, data.assessmentRequest),
     onError,
     onSuccess,
   });

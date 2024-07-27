@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@radix-ui/themes';
 
-import { useDeleteProperty } from '../../hooks/queries/useDeleteProperty';
+import { useDeleteCurrentUserProperty } from '../../hooks/queries/currentUser/useDeleteProperty';
 import { useStore } from '../../store';
 import { AlertDialog } from '../AlertDialog';
 
@@ -15,7 +15,7 @@ export const DeletePropertyDialog: React.FC<Props> = ({ userId, propertyId }) =>
   const addToast = useStore((state) => state.addToast);
   const navigate = useNavigate();
 
-  const { mutate: deleteProperty } = useDeleteProperty({
+  const { mutate: deleteProperty } = useDeleteCurrentUserProperty({
     onError: (error) => {
       addToast({
         intent: 'error',

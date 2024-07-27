@@ -8,7 +8,7 @@ import { Callout, Flex } from '@radix-ui/themes';
 import { ForesterProfile } from '../components/ForesterProfile';
 import { LandownerProfile } from '../components/LandownerProfile';
 import { LoadingCallout } from '../components/LoadingCallout';
-import { useGetUserProfile } from '../hooks/queries/useGetUserProfile';
+import { useGetUserProfile } from '../hooks/queries/currentUser/useGetUserProfile';
 
 export const Profile: React.FC = () => {
   const { user } = useAuth0();

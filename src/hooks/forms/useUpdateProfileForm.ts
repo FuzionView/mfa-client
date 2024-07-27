@@ -6,7 +6,7 @@ import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
 
 import { UserProfile } from '@types';
 import { useStore } from '../../store';
-import { useUpdateProfile } from '../queries/useUpdateProfile';
+import { useUpdateProfile } from '../queries/currentUser/useUpdateProfile';
 
 const DEFAULT_VALUES: Partial<UserProfile> = {
   address: '',

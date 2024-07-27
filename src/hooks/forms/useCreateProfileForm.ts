@@ -7,7 +7,7 @@ import { UserProfileSchema } from 'mfa-server/src/schemas/UserProfileSchema';
 
 import { UserProfile } from '@types';
 import { useStore } from '../../store';
-import { useCreateProfile } from '../queries/useCreateProfile';
+import { useCreateProfile } from '../queries/currentUser/useCreateProfile';
 import { usePersistFormInput } from '../usePersistFormInput';
 
 const DEFAULT_VALUES: Partial<UserProfile> = {

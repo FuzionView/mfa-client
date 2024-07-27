@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { PropertyWithIdAndStatus } from '@types';
-import { getProperties } from '../../api/properties';
+import { getCurrentUserProperties } from '../../../api/currentUser/properties';
 
 export const useGetProperties = (userId?: string) =>
   useQuery({
     enabled: !!userId,
-    queryFn: () => getProperties(userId!).then(({ data }) => data as PropertyWithIdAndStatus[]),
+    queryFn: () => getCurrentUserProperties().then(({ data }) => data as PropertyWithIdAndStatus[]),
     queryKey: ['properties', userId],
   });

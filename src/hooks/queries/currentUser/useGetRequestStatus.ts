@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getRequestStatus } from '../../api/assessmentRequests';
+import { getCurrentUserAssessmentRequestStatus } from '../../../api/currentUser/assessmentRequests';
 
 export const useGetRequestStatus = (propertyId?: number) =>
   useQuery({
     enabled: !!propertyId,
-    queryFn: () => getRequestStatus(propertyId!).then(({ data }) => data),
+    queryFn: () => getCurrentUserAssessmentRequestStatus(propertyId!).then(({ data }) => data),
     queryKey: ['property-request-status', propertyId],
   });

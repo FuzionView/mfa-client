@@ -9,3 +9,5 @@ export const setAccessToken = (accessToken: string) => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   axios.defaults.withCredentials = true;
 };
+
+export const SERVER_URL = import.meta.env.VITE_SERVER_URL;

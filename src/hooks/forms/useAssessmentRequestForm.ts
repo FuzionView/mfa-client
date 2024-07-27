@@ -6,7 +6,7 @@ import { AssessmentRequestSchema } from 'mfa-server/src/schemas/AssessmentReques
 
 import { AssessmentContactMethod, AssessmentRequest } from '@types';
 import { useStore } from '../../store';
-import { useCreateAssessmentRequest } from '../queries/useCreateAssessmentRequest';
+import { useCreateAssessmentRequest } from '../queries/currentUser/useCreateAssessmentRequest';
 import { usePersistFormInput } from '../usePersistFormInput';
 
 const DEFAULT_VALUES: Partial<AssessmentRequest> = {
