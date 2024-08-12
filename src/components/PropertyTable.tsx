@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Table } from '@radix-ui/themes';
 
 import { Address, PropertyAddressType, PropertyWithIdAndStatus } from '@types';
-import { useGetAllProperties } from '../hooks/queries/useGetAllProperties';
+import { useGetAllProperties } from '@hooks/queries/useGetAllProperties';
 
 interface RowProps {
   property: PropertyWithIdAndStatus;

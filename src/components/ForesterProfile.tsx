@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Callout, Card } from '@radix-ui/themes';
 
 import { ForesterApprovalStatus, UserType } from '@types';
-import { useGetUserProfile } from '../hooks/queries/currentUser/useGetUserProfile';
+import { useGetUserProfile } from '@hooks/queries/currentUser/useGetUserProfile';
 import { PropertyTable } from './PropertyTable';
 import { UserInfoDisplay } from './UserInfoDisplay';
 

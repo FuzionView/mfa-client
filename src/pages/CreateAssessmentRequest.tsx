@@ -7,7 +7,7 @@ import { Button, Card, Flex } from '@radix-ui/themes';
 import { MultiSelectFormField } from '../components/FormFields/MultiSelectFormField';
 import { SelectFormField } from '../components/FormFields/SelectFormField';
 import { TextFormField } from '../components/FormFields/TextFormField';
-import { useAssessmentRequestForm } from '../hooks/forms/useAssessmentRequestForm';
+import { useAssessmentRequestForm } from '@hooks/forms/useAssessmentRequestForm';
 
 interface Props {}
 

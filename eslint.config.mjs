@@ -30,7 +30,7 @@ export default [
             ['^(@radix-ui)'],
             // @Aliases and Relative imports. Put same-folder imports and `.` last.
             [
-              '^(@api|@components|@constants|@contexts|@modules|@pages|@styles|@types|@utils)',
+              '^(@api|@components|@contexts|@hooks|@modules|@pages|@styles|@types)',
               '^\\.\\.(?!/?$)',
               '^\\.\\./?$',
               '^\\./(?=.*/)(?!/?$)',

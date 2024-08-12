@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@radix-ui/themes';
 
-import { useDeleteCurrentUserProperty } from '../../hooks/queries/currentUser/useDeleteProperty';
+import { useDeleteCurrentUserProperty } from '@hooks/queries/currentUser/useDeleteProperty';
 import { useStore } from '../../store';
 import { AlertDialog } from '../AlertDialog';
 

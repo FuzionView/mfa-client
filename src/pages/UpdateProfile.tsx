@@ -5,8 +5,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Button, Card, Flex } from '@radix-ui/themes';
 
 import { ProfileForm } from '@components';
-import { useUpdateProfileForm } from '../hooks/forms/useUpdateProfileForm';
-import { useGetUserProfile } from '../hooks/queries/currentUser/useGetUserProfile';
+import { useUpdateProfileForm } from '@hooks/forms/useUpdateProfileForm';
+import { useGetUserProfile } from '@hooks/queries/currentUser/useGetUserProfile';
 
 export const UpdateProfile: React.FC = () => {
   const { user } = useAuth0();

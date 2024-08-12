@@ -6,7 +6,7 @@ import { Box, Button, Callout, Card, Flex, Heading } from '@radix-ui/themes';
 
 import { AddressDisplay } from '@components';
 import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
-import { useGetProperties } from '../hooks/queries/currentUser/useGetProperties';
+import { useGetProperties } from '@hooks/queries/currentUser/useGetProperties';
 
 interface PropertyInfoProps {
   property: PropertyWithIdAndStatus;

@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { Box } from '@radix-ui/themes';
 
-import { useGetProperty } from '../hooks/queries/currentUser/useGetProperty';
+import { useGetProperty } from '@hooks/queries/currentUser/useGetProperty';
 
 export const ForesterPropertyInfo = () => {
   const { propertyId, userId } = useParams();

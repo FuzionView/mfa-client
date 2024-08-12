@@ -6,8 +6,8 @@ import { Box, Button, Card, Flex } from '@radix-ui/themes';
 
 import { PropertyForm } from '@components';
 import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog';
-import { useUpdatePropertyForm } from '../hooks/forms/useUpdatePropertyForm';
-import { useGetProperty } from '../hooks/queries/currentUser/useGetProperty';
+import { useUpdatePropertyForm } from '@hooks/forms/useUpdatePropertyForm';
+import { useGetProperty } from '@hooks/queries/currentUser/useGetProperty';
 
 export const UpdateProperty: React.FC = () => {
   const { user } = useAuth0();

@@ -24,13 +24,12 @@
     "paths": {
       "@api": ["./src/api"],
       "@components": ["./src/components"],
-      "@constants": ["./src/constants"],
       "@contexts": ["./src/contexts"],
+      "@hooks": ["./src/hooks"],
       "@modules": ["./node_modules"],
       "@styles": ["./src/styles"],
       "@types": ["./src/types"],
-      "@pages": ["./src/pages"],
-      "@utils": ["./src/utils"]
+      "@pages": ["./src/pages"]
     }
   },
   "include": ["src"],
