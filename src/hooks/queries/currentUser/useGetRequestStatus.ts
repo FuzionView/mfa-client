@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getCurrentUserAssessmentRequestStatus } from '../../../api/currentUser/assessmentRequests';
+import { getCurrentUserAssessmentRequestStatus } from '@api/currentUser/assessmentRequests';
 
 export const useGetRequestStatus = (propertyId?: number) =>
   useQuery({

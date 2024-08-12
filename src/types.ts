@@ -1,4 +1,4 @@
-export * from 'mfa-server/src/types';
+export * from 'mfa-server/types/index.ts';
 
 export interface Toast {
   id: string;

@@ -3,7 +3,7 @@ import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PropertySchema } from 'mfa-server/src/schemas/PropertySchema';
+import { PropertySchema } from 'mfa-server/schemas/PropertySchema.ts';
 
 import { Property } from '@types';
 import { useStore } from '../../store';

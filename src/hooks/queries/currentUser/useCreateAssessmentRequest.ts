@@ -1,7 +1,7 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
 
 import { AssessmentRequest } from '@types';
-import { createCurrentUserAssessmentRequest } from '../../../api/currentUser/assessmentRequests';
+import { createCurrentUserAssessmentRequest } from '@api/currentUser/assessmentRequests';
 
 interface UseCreateAssessmentRequestArgs {
   onSuccess?: MutationOptions['onSuccess'];

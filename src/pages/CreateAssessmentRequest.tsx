@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { AssessmentContactMethod, AssessmentRequest } from 'mfa-server/src/types';
+import { AssessmentContactMethod, AssessmentRequest } from '@types';
 
 import { Button, Card, Flex } from '@radix-ui/themes';
 

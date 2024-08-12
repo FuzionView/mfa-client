@@ -1,6 +1,6 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
 
-import { deleteCurrentUserProperty } from '../../../api/currentUser/properties';
+import { deleteCurrentUserProperty } from '@api/currentUser/properties';
 
 interface UseDeletePropertyArgs {
   onSuccess?: MutationOptions['onSuccess'];

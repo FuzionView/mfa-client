@@ -1,7 +1,7 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
 
+import { createCurrentUserProperty } from '@api/currentUser/properties';
 import { Property } from '@types';
-import { createCurrentUserProperty } from '../../../api/currentUser/properties';
 
 interface UseUpdateProfileArgs {
   onSuccess?: MutationOptions['onSuccess'];

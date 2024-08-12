@@ -1,7 +1,7 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
 
 import { UserProfile } from '@types';
-import { createCurrentUserProfile } from '../../../api/currentUser/users';
+import { createCurrentUserProfile } from '@api/currentUser/users';
 interface UseUpdateProfileArgs {
   onSuccess?: MutationOptions['onSuccess'];
   onError?: MutationOptions['onError'];

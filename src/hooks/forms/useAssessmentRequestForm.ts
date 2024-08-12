@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { AssessmentRequestSchema } from 'mfa-server/src/schemas/AssessmentRequestSchema';
+import { AssessmentRequestSchema } from 'mfa-server/schemas/AssessmentRequestSchema.ts';
 
 import { AssessmentContactMethod, AssessmentRequest } from '@types';
 import { useStore } from '../../store';
