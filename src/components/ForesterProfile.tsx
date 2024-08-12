@@ -1,9 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { ForesterApprovalStatus, UserType } from 'mfa-server/src/types';
 
 import { Callout, Card } from '@radix-ui/themes';
 
+import { ForesterApprovalStatus, UserType } from '@types';
 import { useGetUserProfile } from '../hooks/queries/currentUser/useGetUserProfile';
+import { PropertyTable } from './PropertyTable';
 import { UserInfoDisplay } from './UserInfoDisplay';
 
 export const ForesterProfile: React.FC = () => {
@@ -25,9 +26,7 @@ export const ForesterProfile: React.FC = () => {
   return (
     <Card>
       <UserInfoDisplay />
-      {profileData?.forester_approved === ForesterApprovalStatus.Approved && (
-        <div>This is a placeholder for property information</div>
-      )}
+      {profileData?.forester_approved === ForesterApprovalStatus.Approved && <PropertyTable />}
     </Card>
   );
 };

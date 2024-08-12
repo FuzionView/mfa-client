@@ -10,4 +10,5 @@ export * from './LogoutButton';
 export * from './ProfileButton';
 export * from './ProfileForm';
 export * from './PropertyForm';
+export * from './PropertyTable';
 export * from './UserInfoDisplay';

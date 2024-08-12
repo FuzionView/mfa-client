@@ -4,6 +4,7 @@ import {
   CreateAssessmentRequest,
   CreateProfile,
   CreateProperty,
+  ForesterPropertyInfo,
   Home,
   Layout,
   Profile,
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
           {
             element: <CreateAssessmentRequest />,
             path: '/request-assessment/:propertyId',
+          },
+          {
+            element: <ForesterPropertyInfo />,
+            path: '/forester-property-info/:userId/:propertyId',
           },
         ],
         element: <RequireAuth />,

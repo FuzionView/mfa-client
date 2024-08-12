@@ -4,8 +4,8 @@ import { getCurrentUserProperties } from '@api/currentUser/properties';
 import { PropertyWithIdAndStatus } from '@types';
 
 export const useGetProperties = (userId?: string) =>
-  useQuery({
+  useQuery<PropertyWithIdAndStatus[]>({
     enabled: !!userId,
-    queryFn: () => getCurrentUserProperties().then(({ data }) => data as PropertyWithIdAndStatus[]),
+    queryFn: () => getCurrentUserProperties().then(({ data }) => data),
     queryKey: ['properties', userId],
   });

@@ -4,7 +4,7 @@ import { getCurrentUserProfile } from '@api/currentUser/users';
 import { UserNotFoundError, UserProfile } from '@types';
 
 export const useGetUserProfile = (userId?: string) =>
-  useQuery({
+  useQuery<UserProfile>({
     enabled: !!userId,
     queryFn: () =>
       getCurrentUserProfile().then(
