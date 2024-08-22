@@ -1,50 +1,16 @@
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { formatRelative } from 'date-fns';
 
 import { Box, Button, Callout, Card, Flex, Heading } from '@radix-ui/themes';
 
 import { AddressDisplay } from '@components';
 import { useGetProperties } from '@hooks/queries/currentUser/useGetProperties';
-import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
+import { PropertyWithIdAndStatus } from '@types';
+import { AssessmentRequestInfo } from './AssessmentRequestInfo';
 
 interface PropertyInfoProps {
   property: PropertyWithIdAndStatus;
 }
-
-const RequestAssessmentBadge = ({ property }: PropertyInfoProps) => {
-  const relativeDate = property.date_requested
-    ? formatRelative(new Date(property.date_requested), new Date())
-    : '';
-  if (property.request_status === AssessmentRequestStatus.Requested) {
-    return (
-      <Callout.Root size="1" style={{ width: '100%' }}>
-        <Flex direction="column">
-          <Box>Assessment requested</Box>
-          <Box>
-            <strong>Request Date: </strong>
-            {relativeDate}
-          </Box>
-        </Flex>
-      </Callout.Root>
-    );
-  }
-  if (property.request_status === AssessmentRequestStatus.Expired) {
-    return (
-      <Callout.Root color="red" size="1" style={{ width: '100%' }}>
-        <Flex direction="column">
-          <Box>Assessment request expired</Box>
-          <Box>
-            <strong>Request Date: </strong>
-            {relativeDate}
-          </Box>
-        </Flex>
-      </Callout.Root>
-    );
-  }
-
-  return null;
-};
 
 const PropertyInfo = ({ property }: PropertyInfoProps) => (
   <Card style={{ minWidth: '300px' }}>
@@ -52,7 +18,7 @@ const PropertyInfo = ({ property }: PropertyInfoProps) => (
       <AddressDisplay data={property} />
       <Box style={{ flexGrow: 1 }} />
       <Flex>
-        <RequestAssessmentBadge property={property} />
+        <AssessmentRequestInfo property={property} />
       </Flex>
       <Flex justify="end">
         <Link to={`/property-info/${property.id}`}>
