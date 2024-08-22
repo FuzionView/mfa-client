@@ -22,10 +22,10 @@
 
     /* Custom */
     "paths": {
-      "@api": ["./src/api"],
+      "@api/*": ["./src/api/*"],
       "@components": ["./src/components"],
       "@contexts": ["./src/contexts"],
-      "@hooks": ["./src/hooks"],
+      "@hooks/*": ["./src/hooks/*"],
       "@modules": ["./node_modules"],
       "@styles": ["./src/styles"],
       "@types": ["./src/types"],

@@ -14,3 +14,7 @@ export const createAssessmentRequest = (
 /** Gets the assessment request status for a specified user and property */
 export const getRequestStatus = (userId: string, propertyId: number) =>
   axios.get(`${SERVER_URL}/users/${userId}/properties/${propertyId}/assessment-requests/status`);
+
+/** Gets a list of assessment requests for a given property */
+export const getAssessmentRequests = (userId: string, propertyId: number) =>
+  axios.get(`${SERVER_URL}/users/${userId}/properties/${propertyId}/assessment-requests/all`);

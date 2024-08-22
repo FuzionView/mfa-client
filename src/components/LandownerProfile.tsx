@@ -1,6 +1,6 @@
 import { Card } from '@radix-ui/themes';
 
-import { LandownerPropertyDisplay } from './LandownerPropertyDisplay';
+import { LandownerPropertyList } from './LandownerPropertyList';
 import { UserInfoDisplay } from './UserInfoDisplay';
 
 export const LandownerProfile: React.FC = () => (
@@ -9,7 +9,7 @@ export const LandownerProfile: React.FC = () => (
       <UserInfoDisplay />
     </Card>
     <Card>
-      <LandownerPropertyDisplay />
+      <LandownerPropertyList />
     </Card>
   </>
 );

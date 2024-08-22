@@ -12,6 +12,7 @@ import {
   UpdateProfile,
   UpdateProperty,
 } from '@pages';
+import { LandownerPropertyInfo } from './pages/LandownerPropertyInfo';
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
           {
             element: <ForesterPropertyInfo />,
             path: '/forester-property-info/:userId/:propertyId',
+          },
+          {
+            element: <LandownerPropertyInfo />,
+            path: '/property-info/:propertyId',
           },
         ],
         element: <RequireAuth />,

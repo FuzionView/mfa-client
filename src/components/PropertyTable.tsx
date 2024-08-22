@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { Button, Table } from '@radix-ui/themes';
+import { Button, Flex, Heading, Table } from '@radix-ui/themes';
 
-import { Address, PropertyAddressType, PropertyWithIdAndStatus } from '@types';
 import { useGetAllProperties } from '@hooks/queries/useGetAllProperties';
+import { Address, PropertyAddressType, PropertyWithIdAndStatus } from '@types';
 
 interface RowProps {
   property: PropertyWithIdAndStatus;
@@ -37,21 +37,24 @@ export const PropertyTable = () => {
   const { data: properties = [] } = useGetAllProperties(1);
 
   return (
-    <Table.Root>
-      <Table.Header>
-        <Table.Row>
-          <Table.ColumnHeaderCell>Address</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Date requested</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Request Status</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>View Info</Table.ColumnHeaderCell>
-        </Table.Row>
-      </Table.Header>
+    <Flex direction="column" gap="1">
+      <Heading>Properties</Heading>
+      <Table.Root variant="surface">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeaderCell>Address</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Date requested</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Request Status</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>View Info</Table.ColumnHeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-      <Table.Body>
-        {properties.map((property) => (
-          <PropertyTableRow property={property} />
-        ))}
-      </Table.Body>
-    </Table.Root>
+        <Table.Body>
+          {properties.map((property) => (
+            <PropertyTableRow property={property} />
+          ))}
+        </Table.Body>
+      </Table.Root>
+    </Flex>
   );
 };

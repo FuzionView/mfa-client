@@ -6,6 +6,10 @@ import { SERVER_URL } from '../../config';
 /** Gets profile data for the specified user */
 export const getUserProfile = (userId: string) => axios.get(`${SERVER_URL}/users/${userId}`);
 
+/** Gets contact information for the specified user */
+export const getUserContactInfo = (userId: string) =>
+  axios.get(`${SERVER_URL}/users/${userId}/contact-info`);
+
 /** Creates a profile for the specified user */
 export const createUserProfile = (data: UserProfile, userId: string) =>
   axios.post(`${SERVER_URL}/users/${userId}`, data);

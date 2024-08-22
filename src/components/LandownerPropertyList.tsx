@@ -5,24 +5,12 @@ import { formatRelative } from 'date-fns';
 import { Box, Button, Callout, Card, Flex, Heading } from '@radix-ui/themes';
 
 import { AddressDisplay } from '@components';
-import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
 import { useGetProperties } from '@hooks/queries/currentUser/useGetProperties';
+import { AssessmentRequestStatus, PropertyWithIdAndStatus } from '@types';
 
 interface PropertyInfoProps {
   property: PropertyWithIdAndStatus;
 }
-
-const RequestAssessmentButton = ({ property }: PropertyInfoProps) => {
-  if (property.request_status === AssessmentRequestStatus.Requested) {
-    return <Button disabled>Assessment requested</Button>;
-  }
-
-  return (
-    <Link to={`/request-assessment/${property.id}`}>
-      <Button variant="outline">Request assessment</Button>
-    </Link>
-  );
-};
 
 const RequestAssessmentBadge = ({ property }: PropertyInfoProps) => {
   const relativeDate = property.date_requested
@@ -30,7 +18,7 @@ const RequestAssessmentBadge = ({ property }: PropertyInfoProps) => {
     : '';
   if (property.request_status === AssessmentRequestStatus.Requested) {
     return (
-      <Callout.Root size="1">
+      <Callout.Root size="1" style={{ width: '100%' }}>
         <Flex direction="column">
           <Box>Assessment requested</Box>
           <Box>
@@ -43,7 +31,7 @@ const RequestAssessmentBadge = ({ property }: PropertyInfoProps) => {
   }
   if (property.request_status === AssessmentRequestStatus.Expired) {
     return (
-      <Callout.Root color="red" size="1">
+      <Callout.Root color="red" size="1" style={{ width: '100%' }}>
         <Flex direction="column">
           <Box>Assessment request expired</Box>
           <Box>
@@ -59,25 +47,24 @@ const RequestAssessmentBadge = ({ property }: PropertyInfoProps) => {
 };
 
 const PropertyInfo = ({ property }: PropertyInfoProps) => (
-  <Card
-    style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', minWidth: '300px' }}
-  >
-    <AddressDisplay data={property} />
-    <Box style={{ flex: 1 }} />
-    <Flex>
-      <RequestAssessmentBadge property={property} />
-    </Flex>
-    <Flex gap="1" justify="end">
-      <RequestAssessmentButton property={property} />
-      <Link to={`/update-property/${property.id}`}>
-        <Button>Edit</Button>
-      </Link>
+  <Card style={{ minWidth: '300px' }}>
+    <Flex direction="column" gap="2" style={{ height: '100%' }}>
+      <AddressDisplay data={property} />
+      <Box style={{ flexGrow: 1 }} />
+      <Flex>
+        <RequestAssessmentBadge property={property} />
+      </Flex>
+      <Flex justify="end">
+        <Link to={`/property-info/${property.id}`}>
+          <Button>View</Button>
+        </Link>
+      </Flex>
     </Flex>
   </Card>
 );
 
 /** Displays a list of properties for a user */
-export const LandownerPropertyDisplay: React.FC = () => {
+export const LandownerPropertyList: React.FC = () => {
   const { user } = useAuth0();
   const { data: propertyData, isError } = useGetProperties(user?.sub);
 

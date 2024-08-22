@@ -1,9 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { Callout, Card } from '@radix-ui/themes';
+import { Callout, Card, Flex } from '@radix-ui/themes';
 
-import { ForesterApprovalStatus, UserType } from '@types';
 import { useGetUserProfile } from '@hooks/queries/currentUser/useGetUserProfile';
+import { ForesterApprovalStatus, UserType } from '@types';
 import { PropertyTable } from './PropertyTable';
 import { UserInfoDisplay } from './UserInfoDisplay';
 
@@ -25,8 +25,10 @@ export const ForesterProfile: React.FC = () => {
 
   return (
     <Card>
-      <UserInfoDisplay />
-      {profileData?.forester_approved === ForesterApprovalStatus.Approved && <PropertyTable />}
+      <Flex direction="column" gap="2">
+        <UserInfoDisplay />
+        {profileData?.forester_approved === ForesterApprovalStatus.Approved && <PropertyTable />}
+      </Flex>
     </Card>
   );
 };

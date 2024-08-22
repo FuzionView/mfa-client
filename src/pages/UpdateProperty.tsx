@@ -5,9 +5,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Box, Button, Card, Flex } from '@radix-ui/themes';
 
 import { PropertyForm } from '@components';
-import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog';
 import { useUpdatePropertyForm } from '@hooks/forms/useUpdatePropertyForm';
 import { useGetProperty } from '@hooks/queries/currentUser/useGetProperty';
+import { DeletePropertyDialog } from '../components/Dialogs/DeletePropertyDialog';
 
 export const UpdateProperty: React.FC = () => {
   const { user } = useAuth0();
@@ -16,7 +16,7 @@ export const UpdateProperty: React.FC = () => {
     data: propertyData,
     isError,
     isPending: isPropertyLoading,
-  } = useGetProperty(user?.sub, Number(propertyId));
+  } = useGetProperty(Number(propertyId));
 
   const { form, onSubmit, isSubmitPending } = useUpdatePropertyForm(Number(propertyId));
 
